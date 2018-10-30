@@ -1,7 +1,8 @@
 <template>
   <div id="app" class="jumbotron">
+    <NavBar :signOut="signOut" :authenticated="authenticated"/>
     <b-container>
-      <NavBar :signOut="signOut" :authenticated="authenticated"/>
+
       <google-auth v-if="id_token == ''" :attachSignin="attachSignin" @authenticated="auth2 = $event"/>
       <Home/>
     </b-container>
