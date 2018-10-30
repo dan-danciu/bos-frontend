@@ -1,7 +1,7 @@
 <template lang="html">
-  <b-container>
+  <div>
     <h1>Hello jello</h1>
-  </b-container>
+  </div>
 </template>
 
 <script>
