@@ -1,6 +1,8 @@
 <template lang="html">
   <div class="">
-    {{ response.all_users }}
+    <ul :style="ulStyle">
+      <li v-for="value in response.all_users">{{ value.name }}</li>
+    </ul>
   </div>
 </template>
 
@@ -14,6 +16,14 @@ export default {
   data: function() {
     return {
       response: null
+    }
+  },
+  computed: {
+    ulStyle: function() {
+      return {
+        columns: Math.floor(this.response.all_users.length/5)+1,
+        listStyleType: 'circle'
+      }
     }
   },
   mounted() {
