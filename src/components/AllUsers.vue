@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="">
     <ul :style="ulStyle">
-      <li v-for="value in response.all_users">{{ value.name }}</li>
+      <li v-for="value in response.all_users" :key="value.user_id">{{ value.name }}</li>
     </ul>
   </div>
 </template>
