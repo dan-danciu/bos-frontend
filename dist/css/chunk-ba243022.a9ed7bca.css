@@ -1,0 +1,1 @@
+.grid-container{display:grid;grid-template-columns:auto auto auto auto auto auto;grid-gap:5px;padding:5px}.day7{grid-column:7}@media screen and (max-width:600px){.grid-container{grid-gap:0;padding:0;padding-top:5px}}@media screen and (min-width:601px,max-width:960px){.grid-container{grid-gap:0;padding:3px;padding-top:5px}}
