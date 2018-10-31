@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="">
     <ul :style="ulStyle">
-      <li v-for="value in response.all_users" :key="value.user_id">{{ value.name }}</li>
+      <li v-for="value in info" :key="value.user_id">{{ value.name }}</li>
     </ul>
   </div>
 </template>
@@ -15,13 +15,14 @@ export default {
   },
   data: function() {
     return {
-      response: null
+      info: null,
+      columns: 0
     }
   },
   computed: {
     ulStyle: function() {
       return {
-        columns: Math.floor(this.response.all_users.length/5)+1,
+        columns: this.columns,
         listStyleType: 'circle'
       }
     }
@@ -34,7 +35,8 @@ export default {
         }
       })
       .then(response => {
-        this.response = response.data;
+        this.info = response.data.all_users;
+        this.columns = Math.floor(this.info.length/5)+1;
       })
       .catch(error => {
         this.message = error;

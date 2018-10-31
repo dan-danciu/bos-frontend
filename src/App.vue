@@ -75,9 +75,6 @@ export default {
         vm.authenticated = false;
         vm.page = 'login';
       });
-    },
-    setPage(value) {
-      this.page = value;
     }
   }
 }
