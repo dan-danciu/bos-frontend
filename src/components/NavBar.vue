@@ -1,60 +1,161 @@
 <template lang="html">
-    <b-navbar toggleable="md" type="dark" variant="info">
-
-      <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-
-      <b-navbar-brand href="#">Amazing App</b-navbar-brand>
-
-      <b-collapse is-nav id="nav_collapse">
-
-        <b-navbar-nav>
-          <b-nav-item href="#" @click="setPage('home')">Home</b-nav-item>
-          <b-nav-item href="#" v-if="authenticated">My Stuff</b-nav-item>
-          <b-nav-item href="#" disabled v-if="!authenticated">My Stuff</b-nav-item>
-          <b-nav-item href="#" v-if="authenticated" @click="setPage('allusers')">All Users</b-nav-item>
-          <b-nav-item href="#" disabled v-if="!authenticated">All Users</b-nav-item>
-        </b-navbar-nav>
-
-        <!-- Right aligned nav items -->
-        <b-navbar-nav class="ml-auto">
-
-          <b-nav-item-dropdown right v-if="authenticated">
-            <!-- Using button-content slot -->
-            <template slot="button-content">
-              <em>User</em>
-            </template>
-            <b-dropdown-item href="#" @click="setPage('profile')">Profile</b-dropdown-item>
-            <b-dropdown-item href="#" @click="signOut">Signout</b-dropdown-item>
-          </b-nav-item-dropdown>
-        </b-navbar-nav>
-
-      </b-collapse>
-    </b-navbar>
+    <div class="topnav" :class="{responsive: makeReactive}">
+      <a href="#" class="brand"><strong>Amazing App</strong></a>
+      <a href="#" :class="{active: page=='home'}" @click="setPage('home')">Home</a>
+      <a href="#" v-if="authenticated" :class="{active: page=='mystuff'}">My Stuff</a>
+      <a href="#" class="disabled" v-if="!authenticated">My Stuff</a>
+      <a href="#" v-if="authenticated" @click="setPage('allusers')" :class="{active: page=='allusers'}">All Users</a>
+      <a href="#" class="disabled" v-if="!authenticated">All Users</a>
+      <div class="dropdown" v-if="authenticated">
+        <button href="#" class="dropbtn">User</button>
+        <div class="dropdown-content">
+          <a href="#" @click="setPage('profile')">Profile</a>
+          <a href="#" @click="signOut">Signout</a>
+        </div>
+      </div>
+      <a href="#" style="font-size:15px;" class="icon" @click="makeReactive = !makeReactive">&#9776;</a>
+    </div>
 </template>
 
 <script>
 export default {
-  components: {
-    'b-navbar': () => import("bootstrap-vue/es/components/navbar/navbar"),
-    'b-navbar-nav': () => import("bootstrap-vue/es/components/navbar/navbar-nav"),
-    'b-navbar-brand': () => import("bootstrap-vue/es/components/navbar/navbar-brand"),
-    'b-navbar-toggle': () => import("bootstrap-vue/es/components/navbar/navbar-toggle"),
-    'b-nav-item': () => import("bootstrap-vue/es/components/nav/nav-item"),
-    'b-nav-item-dropdown': () => import("bootstrap-vue/es/components/nav/nav-item-dropdown"),
-    'b-dropdown-item': () => import("bootstrap-vue/es/components/dropdown/dropdown-item"),
-    'b-collapse': () => import("bootstrap-vue/es/components/collapse/collapse")
-  },
   props: {
     signOut: Function,
     authenticated: Boolean
   },
+  data: function() {
+    return {
+      makeReactive: false,
+      page: 'home'
+    }
+  },
   methods: {
     setPage(page) {
+      this.makeReactive = false;
+      this.page = page;
       this.$emit('pageChange', page);
     }
   }
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+.topnav {
+  overflow: hidden;
+  background-image: linear-gradient(to right, #4facff , #1de08b);
+  box-shadow: 0 4px 8px 0 #999;
+}
+
+.topnav .brand {
+  color: #fff;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav .active {
+  background-color: #d3a378;
+  color: #f2f2f2;
+  font-weight: bold;
+}
+
+.topnav .disabled:hover {
+  color: #4facff;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+.dropdown {
+    position: relative;
+    float: right;
+    display: inline-block;
+}
+
+.dropdown .dropbtn {
+    font-size: 17px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px #999;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.topnav a:hover, .dropdown:hover .dropbtn {
+  background-color: #086363;
+  color: white;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    position: fixed;
+}
+
+.topnav .disabled {
+  color: #777;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
 </style>

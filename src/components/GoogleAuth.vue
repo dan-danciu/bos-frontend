@@ -1,10 +1,12 @@
 <template lang="html">
-    <div id="gSignInWrapper">
+    <div id="gSignInWrapper" class="container">
+      <br><br>
       <span class="label">Sign in with:</span>
       <div id="customBtn" class="customGPlusSignIn">
         <span class="icon"></span>
         <span class="buttonText">Google</span>
       </div>
+      <br><br><br>
     </div>
 </template>
 

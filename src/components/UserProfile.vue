@@ -1,16 +1,19 @@
 <template lang="html">
-  <b-jumbotron :header="profile.name" :lead="profile.email">
-    <img :src="profile.image" alt="">
-  </b-jumbotron>
+  <div class="card">
+    <div class="cardimg">
+      <img :src="profile.image" alt="">
+    </div>
+    <div class="container">
+      <h4><strong>{{ profile.name }}</strong></h4>
+      <p>{{ profile.email }}</p>
+    </div>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
 
 export default {
-  components: {
-    'b-jumbotron': () => import("bootstrap-vue/es/components/jumbotron/jumbotron")
-  },
   props: {
     id_token: String,
     profile: Object
@@ -44,4 +47,5 @@ export default {
 </script>
 
 <style lang="css">
+
 </style>

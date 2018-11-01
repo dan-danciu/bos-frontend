@@ -6,11 +6,30 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.component('google-auth', () => import("./components/GoogleAuth.vue"));
 
-import { Layout } from 'bootstrap-vue/es/components';
-Vue.use(Layout);
-
 Vue.config.productionTip = false
 
+Vue.mixin({
+  data: function() {
+    return {
+      windowWidth: 0
+    }
+  },
+  mounted() {
+    this.$nextTick(function() {
+      window.addEventListener('resize', this.getWindowWidth);
+      this.getWindowWidth();
+    })
+  },
+  methods: {
+    getWindowWidth() {
+      this.windowWidth = document.documentElement.clientWidth;
+    }
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.getWindowWidth);
+  }
+
+})
 
 window.app = new Vue({
   render: h => h(App)

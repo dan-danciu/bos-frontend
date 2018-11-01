@@ -1,14 +1,15 @@
 <template>
   <div id="app" class="bg">
 
-    <NavBar :signOut="signOut" :authenticated="authenticated" @pageChange="page = $event"/>
-    <b-card>
-      <google-auth v-if="id_token == ''" :attachSignin="attachSignin" @authenticated="auth2 = $event"/>
-      <Home v-if="page == 'home'"/>
-      <UserProfile :id_token="id_token" :profile="profile" v-if="page == 'profile'"/>
-      <AllUsers :id_token="id_token" v-if="page == 'allusers'"/>
-    </b-card>
-
+    <NavBar :signOut="signOut" :authenticated="authenticated" @pageChange="page = $event"/><br>
+    <div class="container">
+      <div class="card">
+        <google-auth v-if="id_token == ''" :attachSignin="attachSignin" @authenticated="auth2 = $event"/>
+        <HomeCalendar v-if="page == 'home'"/>
+        <UserProfile :id_token="id_token" :profile="profile" v-if="page == 'profile'"/>
+        <AllUsers :id_token="id_token" v-if="page == 'allusers'"/>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -19,11 +20,10 @@ import axios from 'axios'
 export default {
   name: 'app',
   components: {
-    Home: () => import("./components/Home.vue"),
+    HomeCalendar: () => import("./components/HomeCalendar.vue"),
     NavBar: () => import("./components/NavBar.vue"),
     UserProfile: () => import("./components/UserProfile.vue"),
     AllUsers: () => import("./components/AllUsers.vue"),
-    'b-card': () => import("bootstrap-vue/es/components/card/card")
   },
   data: function() {
     return {
@@ -34,7 +34,8 @@ export default {
       page: 'login',
       loading: false,
       message: '',
-      showAlert: false
+      showAlert: false,
+      windowWidth: 0,
     }
   },
   methods: {
@@ -90,7 +91,24 @@ export default {
   }
 
   html {
-    background-color: #eeeeee;
+    background-color: #eee;
     height: 100%;
+  }
+
+  .bg {
+    background-color: #eee;
+  }
+
+  .card {
+    box-shadow: 0 4px 8px 0 #999;
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+  }
+  /* Add rounded corners to the top left and the top right corner of the image */
+  .cardimg {
+    border-radius: 5px 5px 0 0;
+  }
+  .container {
+      padding: 2px 16px;
   }
 </style>

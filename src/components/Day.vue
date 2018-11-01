@@ -1,0 +1,203 @@
+<template lang="html">
+  <div class="card daycard" :class="{outside: month != refMonth}">
+    <div class="cardimg daytop">
+      <div class="daytext"><strong> {{ day }}</strong><div class="weekday">{{ weekDay }}</div></div>
+      <div class="addentry">
+        <p><strong> +</strong></p>
+      </div>
+    </div>
+    <div class="container user">
+      <ul class="userlist">
+        <li>
+          <div class="round">
+            <p>SU</p>
+          </div>
+          <div class="longuser" v-if="windowWidth > 1200">
+            some user
+          </div>
+        </li>
+        <li>
+          <div class="round">
+            <p>SO</p>
+          </div>
+          <div class="longuser" v-if="windowWidth > 1200">
+            some other user
+          </div>
+        </li>
+        <li>
+          <div class="round">
+            <p>SO</p>
+          </div>
+          <div class="longuser" v-if="windowWidth > 1200">
+            some other user
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</template>
+
+<script>
+export default {
+  props: {
+    date: Date,
+    refMonth: Number
+  },
+  data: function() {
+    return {
+      daysOfWeek: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+      weekDay: '',
+      day: 0,
+      month: 0
+    }
+  },
+  created() {
+    this.weekDay = this.daysOfWeek[this.date.getDay()];
+    this.day = this.date.getDate();
+    this.month = this.date.getMonth();
+  }
+}
+</script>
+
+<style lang="css">
+.round {
+  position: relative;
+  left: -10px;
+  height: 25px;
+  width: 25px;
+  background-color: #d3a378;
+  border-radius: 50%;
+  display: inline-block;
+  float: left;
+}
+.longuser {
+  display: inline-block;
+  text-align: left;
+}
+.round p {
+  position: relative;
+  text-align: center;
+  top: 5px;
+  color: #eee;
+}
+.outside {
+  color: #888;
+}
+.outside .weekday {
+  color: #fff;
+  text-shadow: 0 0 0;
+}
+.outside .daytop {
+  background-color: #ddd;
+}
+.daycard {
+  height: auto;
+  display: inline-block;
+  border-radius: 5px;
+  border: 0;
+  background-color: #f2e4d7;
+}
+.daytop {
+  height: 70px;
+  background-color: #eff9ff;
+}
+.daytext {
+  font-size: 25px;
+  position: relative;
+  display: inline-block;
+  float: right;
+  right: 3px;
+  z-index: 1;
+}
+.weekday {
+  display: block;
+  bottom: 0px;
+  font-size: 15px;
+  text-decoration: overline;
+  color: #d3a378;
+}
+.addentry{
+  display: inline-block;
+  position: absolute;
+  background-color: #fff;
+  border: 1px dotted #4facff;
+  color: #4facff;
+  font-size: 40px;
+  border-radius: 5px;
+  margin-bottom: 0px;
+  text-align: right;
+  top: 15px;
+  left: 5px;
+  width: 40px;
+  height: 30px;
+}
+.addentry p {
+  top: -15px;
+  text-align: center;
+  position: relative;
+}
+.addentry:hover {
+  color: #1de08b;
+  box-shadow: inset -7px -7px 15px -10px #4facff;
+  cursor: pointer;
+}
+.user {
+  font-size: 12px;
+  box-shadow: 0 8px 8px 0 #afddda inset;
+  border-top: 2px solid #4facff;
+
+}
+.userlist {
+  list-style-type: none;
+  padding: 0;
+  overflow: none;
+}
+
+.userlist li {
+  position: relative;
+  display: block;
+  float: left;
+  color: #444;
+}
+@media screen and (max-width: 320px) {
+  .daycard {
+    width: 40px;
+    font-size: 10px;
+  }
+  .weekday {
+    display: block;
+    bottom: 0px;
+  }
+  .addentry {
+    top: 15px;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    color: #eee;
+  }
+  .daytext {
+    text-shadow: 0 0 0;
+  }
+  .outside .daytext {
+    text-shadow: 0 0 0;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .daycard {
+    width: 150px;
+    font-size: 15px;
+    left: 0px;
+  }
+  .weekday {
+    display: inline-block;
+  }
+  .addentry {
+    left: -2px;
+    top: -3px;
+    width: 40px;
+    height: 40px;
+    box-shadow: inset -11px -11px 2px -10px #222;
+  }
+}
+</style>
