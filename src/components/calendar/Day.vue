@@ -1,12 +1,12 @@
 <template lang="html">
-  <div class="card daycard" :class="{outside: month != refMonth}">
+  <div class="card daycard" :class="[{outside: month != refMonth}, {today: datesEqual}]">
     <div class="cardimg daytop">
-      <div class="daytext"><strong> {{ day }}</strong><div class="weekday">{{ weekDay }}</div></div>
+      <div class="daytext" :class="{weekend: isWeekend}"><strong> {{ day }}</strong><div class="weekday">{{ daysOfWeek[weekDay] }}</div></div>
       <div class="addentry">
         <p><strong> +</strong></p>
       </div>
     </div>
-    <div class="container user">
+    <div class="user">
       <ul class="userlist">
         <li>
           <div class="round">
@@ -14,14 +14,6 @@
           </div>
           <div class="longuser" v-if="windowWidth > 1200">
             some user
-          </div>
-        </li>
-        <li>
-          <div class="round">
-            <p>SO</p>
-          </div>
-          <div class="longuser" v-if="windowWidth > 1200">
-            some other user
           </div>
         </li>
         <li>
@@ -42,20 +34,41 @@
 export default {
   props: {
     date: Date,
-    refMonth: Number
+    refMonth: Number,
+    today: Object
+  },
+  watch: {
+    date: function() {
+      this.setUp();
+    }
   },
   data: function() {
     return {
       daysOfWeek: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-      weekDay: '',
+      weekDay: 0,
       day: 0,
       month: 0
     }
   },
   created() {
-    this.weekDay = this.daysOfWeek[this.date.getDay()];
-    this.day = this.date.getDate();
-    this.month = this.date.getMonth();
+    this.setUp();
+  },
+  computed: {
+    datesEqual: function() {
+      return this.today.day == this.date.getDate() &&
+        this.today.month == this.date.getMonth() &&
+        this.today.year == this.date.getFullYear()
+    },
+    isWeekend: function() {
+      return this.weekDay == 0 || this.weekDay == 6
+    }
+  },
+  methods: {
+    setUp() {
+      this.weekDay = this.date.getDay();
+      this.day = this.date.getDate();
+      this.month = this.date.getMonth();
+    }
   }
 }
 </script>
@@ -66,9 +79,10 @@ export default {
   left: -10px;
   height: 25px;
   width: 25px;
-  background-color: #d3a378;
+  background-color: var(--main-color);
   border-radius: 50%;
   display: inline-block;
+  top: -5px;
   float: left;
 }
 .longuser {
@@ -76,31 +90,48 @@ export default {
   text-align: left;
 }
 .round p {
-  position: relative;
+  position: absolute;
   text-align: center;
-  top: 5px;
+  top: -6px;
+  left: 4px;
   color: #eee;
 }
+.today {
+  color: var(--middle-color);
+  border: 5px solid var(--middle-color);
+}
+.today .weekday {
+  color: var(--middle-color);
+}
+.weekend .weekday {
+  color: var(--accent-color);
+}
 .outside {
-  color: #888;
+  color: var(--disabled-color);
 }
 .outside .weekday {
-  color: #fff;
+  color: var(--disabled-color);
   text-shadow: 0 0 0;
 }
 .outside .daytop {
   background-color: #ddd;
 }
+.outside .user {
+  box-shadow: 0 0 0 0;
+  border: 0;
+  display: block;
+  float: left;
+  background-color: #aaa;
+}
 .daycard {
   height: auto;
   display: inline-block;
   border-radius: 5px;
-  border: 0;
-  background-color: #f2e4d7;
+  background-color: var(--bottom-color);
 }
 .daytop {
   height: 70px;
-  background-color: #eff9ff;
+  background-color: #fff;
 }
 .daytext {
   font-size: 25px;
@@ -115,42 +146,44 @@ export default {
   bottom: 0px;
   font-size: 15px;
   text-decoration: overline;
-  color: #d3a378;
+  color: var(--main-color);
+}
+.weekend {
+  color: var(--accent-color);
 }
 .addentry{
-  display: inline-block;
-  position: absolute;
+  display: block;
+  position: relative;
   background-color: #fff;
-  border: 1px dotted #4facff;
-  color: #4facff;
+  border: 1px dotted var(--shadow-color);
+  color: var(--main-color);
   font-size: 40px;
   border-radius: 5px;
   margin-bottom: 0px;
   text-align: right;
   top: 15px;
-  left: 5px;
   width: 40px;
   height: 30px;
 }
 .addentry p {
-  top: -15px;
   text-align: center;
-  position: relative;
+  position: absolute;
+  top: -45px;
+  left: 8px;
 }
 .addentry:hover {
-  color: #1de08b;
-  box-shadow: inset -7px -7px 15px -10px #4facff;
+  color: var(--secondary-color);
+  box-shadow: inset -7px -7px 15px -10px var(--main-color);
   cursor: pointer;
 }
 .user {
   font-size: 12px;
-  box-shadow: 0 8px 8px 0 #afddda inset;
-  border-top: 2px solid #4facff;
+  border-top: 2px solid var(--shadow-color);
 
 }
 .userlist {
   list-style-type: none;
-  padding: 0;
+  padding: 5px;
   overflow: none;
 }
 
@@ -183,6 +216,28 @@ export default {
     text-shadow: 0 0 0;
   }
 }
+@media screen and (max-width: 500px) {
+  .addentry {
+    display: none;
+  }
+}
+@media screen and (min-width: 900px) {
+  .daycard {
+    width: 110px;
+    font-size: 15px;
+    left: 0px;
+  }
+  .weekday {
+    display: inline-block;
+  }
+  .addentry {
+    left: -3px;
+    top: -3px;
+    width: 40px;
+    height: 40px;
+    box-shadow: inset -11px -11px 2px -10px #222;
+  }
+}
 @media screen and (min-width: 1200px) {
   .daycard {
     width: 150px;
@@ -193,7 +248,7 @@ export default {
     display: inline-block;
   }
   .addentry {
-    left: -2px;
+    left: -3px;
     top: -3px;
     width: 40px;
     height: 40px;

@@ -1,7 +1,8 @@
 <template>
   <div id="app" class="bg">
-
-    <NavBar :signOut="signOut" :authenticated="authenticated" @pageChange="page = $event"/><br>
+    <div class="container">
+      <NavBar :signOut="signOut" :authenticated="authenticated" @pageChange="page = $event"/><br>
+    </div>
     <div class="container">
       <div class="card">
         <google-auth v-if="id_token == ''" :attachSignin="attachSignin" @authenticated="auth2 = $event"/>
@@ -88,27 +89,54 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    --main-color: #4facff;
+    --secondary-color: #1de08b;
+    --accent-color: #d84f13;
+    --bottom-color: #fff9f2;
+    --shadow-color: #afddda;
+    --disabled-color: #8d9fa8;
+    --middle-color: #2eccb1;
   }
 
   html {
     background-color: #eee;
     height: 100%;
-  }
+    min-width: 100%;
+    overflow-x: hidden;
 
+  }
   .bg {
     background-color: #eee;
+    position: relative;
+    display: inline-block;
+    float: left;
+    min-width: 100%;
   }
-
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    grid-gap: 15px;
+    padding: 15px;
+  }
   .card {
+    display: block;
+    float: left;
     box-shadow: 0 4px 8px 0 #999;
     transition: 0.3s;
-    border-radius: 5px; /* 5px rounded corners */
+    border-radius: 5px;
+    background-color: #fff;
+    width: auto;
   }
-  /* Add rounded corners to the top left and the top right corner of the image */
   .cardimg {
     border-radius: 5px 5px 0 0;
   }
   .container {
       padding: 2px 16px;
+      display: block;
+      position: relative;
+      width: auto;
+  }
+  .clickable {
+    cursor: pointer;
   }
 </style>

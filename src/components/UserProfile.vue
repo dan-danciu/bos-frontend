@@ -1,12 +1,15 @@
 <template lang="html">
-  <div class="card">
-    <div class="cardimg">
-      <img :src="profile.image" alt="">
+  <div class="container">
+    <div class="card">
+      <div class="cardimg">
+        <img :src="profile.image" alt="">
+      </div>
+      <div class="container">
+        <h4><strong>{{ profile.name }}</strong></h4>
+        <p>{{ profile.email }}</p>
+      </div>
     </div>
-    <div class="container">
-      <h4><strong>{{ profile.name }}</strong></h4>
-      <p>{{ profile.email }}</p>
-    </div>
+
   </div>
 </template>
 

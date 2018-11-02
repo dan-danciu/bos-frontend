@@ -1,12 +1,11 @@
 import Vue from 'vue'
 
 import App from './App.vue'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import Unsupported from './Unsupported.vue'
 
 Vue.component('google-auth', () => import("./components/GoogleAuth.vue"));
 
-Vue.config.productionTip = false
+Vue.config.productionTip = true
 
 Vue.mixin({
   data: function() {
@@ -31,6 +30,22 @@ Vue.mixin({
 
 })
 
-window.app = new Vue({
-  render: h => h(App)
-}).$mount('#app')
+
+const { detect } = require('detect-browser');
+const browser = detect();
+
+// handle the case where we don't detect the browser
+switch (browser && browser.name) {
+  case 'chrome':
+  case 'firefox':
+    window.app = new Vue({
+      render: h => h(App)
+    }).$mount('#app')
+
+    break;
+
+  default:
+    window.app = new Vue({
+      render: h => h(Unsupported)
+    }).$mount('#app')
+}

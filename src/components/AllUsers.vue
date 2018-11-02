@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="">
+  <div class="container">
     <ul :style="ulStyle">
       <li v-for="value in info" :key="value.user_id">{{ value.name }}</li>
     </ul>
