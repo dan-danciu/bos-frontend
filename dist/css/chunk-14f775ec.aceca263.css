@@ -1,1 +1,0 @@
-.monthselector{grid-gap:5px;background-color:#fff;position:absolute;background-color:var(--bottom-color);border:1px solid var(--main-color);border-radius:5px;float:left;width:auto;z-index:100}.monthselector .card:hover{color:var(--accent-color);background-color:var(--shadow-color);cursor:pointer}.current{color:var(--secondary-color);background-color:var(--main-color)}
