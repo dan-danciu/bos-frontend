@@ -1,1 +1,0 @@
-.day7{grid-column:7}@media screen and (max-width:600px){#daycards{grid-gap:2px;padding:0;padding-top:5px}}@media screen and (max-width:340px){#daycards{display:-webkit-box;display:-ms-flexbox;display:flex;grid-gap:0;padding:0;max-width:70%;position:relative}}@media screen and (min-width:601px,max-width:960px){#daycards{grid-gap:5px;padding:3px;padding-top:5px}}
