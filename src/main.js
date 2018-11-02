@@ -4,6 +4,7 @@ import App from './App.vue'
 import Unsupported from './Unsupported.vue'
 
 Vue.component('google-auth', () => import("./components/GoogleAuth.vue"));
+Vue.component('Loading', () => import("./components/Loading.vue"));
 
 Vue.config.productionTip = true
 
@@ -36,16 +37,15 @@ const browser = detect();
 
 // handle the case where we don't detect the browser
 switch (browser && browser.name) {
-  case 'chrome':
-  case 'firefox':
+  case 'edge':
+  case 'ie':
     window.app = new Vue({
-      render: h => h(App)
+      render: h => h(Unsupported)
     }).$mount('#app')
-
     break;
 
   default:
     window.app = new Vue({
-      render: h => h(Unsupported)
+      render: h => h(App)
     }).$mount('#app')
 }

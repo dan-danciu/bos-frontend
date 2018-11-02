@@ -1,14 +1,15 @@
 <template>
-  <div id="app" class="bg">
+  <div id="app" class="container">
     <div class="container">
+
       <NavBar :signOut="signOut" :authenticated="authenticated" @pageChange="page = $event"/><br>
-    </div>
-    <div class="container">
+      <hr><hr><hr><hr>
       <div class="card">
         <google-auth v-if="id_token == ''" :attachSignin="attachSignin" @authenticated="auth2 = $event"/>
         <HomeCalendar v-if="page == 'home'"/>
         <UserProfile :id_token="id_token" :profile="profile" v-if="page == 'profile'"/>
         <AllUsers :id_token="id_token" v-if="page == 'allusers'"/>
+        <Loading v-if="loading"/>
       </div>
     </div>
   </div>
@@ -24,7 +25,7 @@ export default {
     HomeCalendar: () => import("./components/HomeCalendar.vue"),
     NavBar: () => import("./components/NavBar.vue"),
     UserProfile: () => import("./components/UserProfile.vue"),
-    AllUsers: () => import("./components/AllUsers.vue"),
+    AllUsers: () => import("./components/AllUsers.vue")
   },
   data: function() {
     return {
@@ -36,7 +37,7 @@ export default {
       loading: false,
       message: '',
       showAlert: false,
-      windowWidth: 0,
+      windowWidth: 0
     }
   },
   methods: {
@@ -105,33 +106,33 @@ export default {
     overflow-x: hidden;
 
   }
-  .bg {
-    background-color: #eee;
-    position: relative;
-    display: inline-block;
-    float: left;
-    min-width: 100%;
-  }
   .grid-container {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto;
+    grid-template-rows: auto;
     grid-gap: 15px;
     padding: 15px;
   }
   .card {
-    display: block;
-    float: left;
+    display: flex;
+    flex-flow: column;
     box-shadow: 0 4px 8px 0 #999;
     transition: 0.3s;
     border-radius: 5px;
     background-color: #fff;
     width: auto;
   }
-  .cardimg {
+  .cardtop {
+    display: flex;
+    flex-flow: column;
     border-radius: 5px 5px 0 0;
   }
+  .cardbot {
+    display: flex;
+    background-color: var(--bottom-color);
+    height: auto;
+  }
   .container {
-      padding: 2px 16px;
       display: block;
       position: relative;
       width: auto;

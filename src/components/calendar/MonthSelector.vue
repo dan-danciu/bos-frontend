@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="grid-container monthselector">
-    <div class="container" v-for="n in 12" :key="n" @click="pickMonth(n)" :class="{current: n - 1 == monthhi}">
+    <div class="card" v-for="n in 12" :key="n" @click="pickMonth(n)" :class="{current: n - 1 == monthhi}">
       {{months[n - 1]}}
     </div>
   </div>
@@ -41,19 +41,17 @@ export default {
 
 <style lang="css">
 .monthselector {
+  grid-gap: 5px;
   background-color: #fff;
-  display: inline-block;
   position: absolute;
-  padding: 0;
+  background-color: var(--bottom-color);
+  border: 1px solid var(--main-color);
+  border-radius: 5px;
   float: left;
   width: auto;
   z-index: 100;
 }
-.monthselector .container {
-  color: #222;
-  box-shadow: 0 5px 5px -2px var(--shadow-color) inset;
-}
-.monthselector .container:hover {
+.monthselector .card:hover {
   color: var(--accent-color);
   background-color: var(--shadow-color);
   cursor: pointer;

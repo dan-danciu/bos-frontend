@@ -1,6 +1,6 @@
 <template lang="html">
-  <div class="grid-container">
-    <day v-for="(day, index) in weekDays" :key="index" :date="day" :today="today" :refMonth="refMonth" :class="{day7: index == 6}"/>
+  <div id="daycards" class="grid-container">
+    <day id="day" v-for="(day, index) in weekDays" :key="index" :date="day" :today="today" :refMonth="refMonth" :class="{day7: index == 6}"/>
   </div>
 </template>
 
@@ -42,19 +42,22 @@ export default {
 </script>
 
 <style lang="css">
-.day7 {
-  grid-column: 7;
-}
+.day1 {grid-column: 1;}
+.day2 {grid-column: 2;}
+.day3 {grid-column: 3;}
+.day4 {grid-column: 4;}
+.day5 {grid-column: 5;}
+.day6 {grid-column: 6;}
+.day7 {grid-column: 7;}
 @media screen and (max-width: 600px) {
-  .grid-container {
-    grid-gap: 0px;
-    padding: 0px;
-    padding-top: 5px;
+  #daycards {
+    display: block;
+    padding: 10px;
   }
 }
 @media screen and (min-width: 601px, max-width: 960px) {
-  .grid-container {
-    grid-gap: 0px;
+  #daycards {
+    grid-gap: 5px;
     padding: 3px;
     padding-top: 5px;
   }

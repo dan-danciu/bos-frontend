@@ -1,5 +1,5 @@
 <template lang="html">
-    <div id="gSignInWrapper" class="container">
+    <div id="gSignInWrapper" class="">
       <br><br>
       <span class="label">Sign in with:</span>
       <div id="customBtn" class="customGPlusSignIn">

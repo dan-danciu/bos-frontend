@@ -1,7 +1,7 @@
 <template lang="html">
-  <div class="container">
+  <div>
     <div class="card">
-      <div class="cardimg">
+      <div class="cardtop">
         <img :src="profile.image" alt="">
       </div>
       <div class="container">

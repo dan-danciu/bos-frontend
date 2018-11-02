@@ -46,6 +46,8 @@ export default {
   box-shadow: 0 4px 8px 0 #999;
   display: block;
   width: 100%;
+  position: fixed;
+  z-index: 200;
 }
 
 .topnav .brand {

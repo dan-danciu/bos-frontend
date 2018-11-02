@@ -1,8 +1,11 @@
 <template lang="html">
-  <div class="container">
-    <ul :style="ulStyle">
-      <li v-for="value in info" :key="value.user_id">{{ value.name }}</li>
-    </ul>
+  <div class="">
+    <div class="container">
+      <ul :style="ulStyle">
+        <li v-for="value in info" :key="value.user_id">{{ value.name }}</li>
+      </ul>
+    </div>
+    <Loading v-if="loading"/>
   </div>
 </template>
 
@@ -16,7 +19,8 @@ export default {
   data: function() {
     return {
       info: null,
-      columns: 0
+      columns: 0,
+      loading: false
     }
   },
   computed: {
@@ -28,6 +32,7 @@ export default {
     }
   },
   mounted() {
+    this.loading = true;
     axios
       .get('https://hzyo7y0ukj.execute-api.eu-west-1.amazonaws.com/dev/all_users', {
         headers: {
@@ -42,6 +47,7 @@ export default {
         this.message = error;
         this.showAlert = true;
     });
+    this.loading = false;
   }
 }
 </script>

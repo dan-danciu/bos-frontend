@@ -1,20 +1,26 @@
 <template lang="html">
   <div class="container blu">
     <h1>Hello jello</h1>
-    <div class="selector">
-      <div class="container card up" @click="increaseMonth">
+    <div class="grid-container selector">
+      <div id="item1" class="container card up" @click="increaseMonth">
         &#9650;
       </div>
-      <div class="container month" @click="showMonthSelector = !showMonthSelector">
+      <div id="item2" class="container card month" @click="showMonthSelector = !showMonthSelector">
         {{ months[refMonth] }}
 
         <MonthSelector v-if="showMonthSelector" :monthhi="today.month" @pickedMonth="changeMonth($event)"/>
       </div>
-      <div class="container card down" @click="decreaseMonth">
+      <div id="item3" class="container card down" @click="decreaseMonth">
         &#9660;
       </div>
-      <div class="container year">
+      <div id="item4" class="container card up" @click="refYear += 1">
+        &#9650;
+      </div>
+      <div id="item5" class="container card year">
         {{ refYear }}
+      </div>
+      <div id="item6" class="container card down" @click="refYear -= 1">
+        &#9660;
       </div>
     </div>
     <div class="calendar">
@@ -121,67 +127,86 @@ export default {
 
 <style lang="css">
 .selector {
+  display: grid;
   font-size: 15px;
   position: absolute;
+  grid-gap: 10px;
+  grid-column-gap: 30px;
   top: 30px;
   float: left;
   color: var(--main-color);
+  top: -5px;
 }
-.selector .month {
-  display: inline-block;
+.month {
+  padding: 5px;
   border-radius: 10%;
   background-color: #fff;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
 }
-.selector .month:hover {
+.month:hover {
   background-color: var(--shadow-color);
   cursor: pointer;
-  top: 2px;
 }
-.selector .year {
-  display: inline-block;
+.year {
+  padding: 5px;
   border-radius: 10%;
   background-color: #fff;
-  left: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
 }
-.up {
-  display: block;
-  position: absolute;
-  top: -25px;
+#item1 {
+  grid-column: 1;
+  grid-row: 1;
+}
+#item2 {
+  grid-row: 2;
+}
+#item3 {
+  grid-row: 3;
+}
+#item5 {
+  grid-column: 2;
+  grid-row: 2;
+}
+#item6 {
+  grid-column: 2;
+  grid-row: 3;
 }
 .up:hover {
   background-color: var(--shadow-color);
   cursor: pointer;
-  top: -22px;
-}
-.down {
-  display: block;
-  position: absolute;
-  top: 25px;
+  top: +3px;
 }
 .down:hover {
   background-color: var(--shadow-color);
   cursor: pointer;
-  top: 28px;
+  top: +3px;
 }
 .blu {
-  background-color: var(--bottom-color);
-  box-shadow: 0 140px 80px -50px var(--main-color) inset;
+  padding-top: 15px;
+  background-image: linear-gradient(#fff, var(--main-color) 10%, var(--secondary-color));
 }
 .calendar {
   background-color: var(--bottom-color);
   padding-top: 20px;
   padding-bottom: 5px;
-  border-top: 2px solid var(--main-color);
-  box-shadow: 0 20px 15px -8px var(--shadow-color) inset;
+  border-top: 2px solid var(--middle-color);
+  background-image: linear-gradient(var(--shadow-color), var(--bottom-color) 3%);
   overflow: none;
 }
 @media screen and (max-width: 600px) {
-  h1 {
+  .blu h1 {
     text-align: right;
     position: relative;
     top: 35px;
+  }
+  .selector {
+    position: fixed;
+    grid-gap: 5px;
+    top: +50px;
+    z-index: 150;
+    font-size: 25px;
   }
 }
 </style>

@@ -1,28 +1,24 @@
 <template lang="html">
-  <div class="card daycard" :class="[{outside: month != refMonth}, {today: datesEqual}]">
-    <div class="cardimg daytop">
+  <div class="card" :class="[{outside: month != refMonth}, {today: datesEqual}]">
+    <div class="cardtop daytop">
       <div class="daytext" :class="{weekend: isWeekend}"><strong> {{ day }}</strong><div class="weekday">{{ daysOfWeek[weekDay] }}</div></div>
       <div class="addentry">
-        <p><strong> +</strong></p>
+        <strong> +</strong>
       </div>
     </div>
-    <div class="user">
+    <div class="cardbot users">
       <ul class="userlist">
         <li>
           <div class="round">
-            <p>SU</p>
+            SU
           </div>
-          <div class="longuser" v-if="windowWidth > 1200">
-            some user
-          </div>
+          <div class="longuser">some user</div>
         </li>
         <li>
           <div class="round">
-            <p>SO</p>
+            SO
           </div>
-          <div class="longuser" v-if="windowWidth > 1200">
-            some other user
-          </div>
+          <div class="longuser">some other user</div>
         </li>
       </ul>
     </div>
@@ -76,31 +72,26 @@ export default {
 <style lang="css">
 .round {
   position: relative;
-  left: -10px;
   height: 25px;
   width: 25px;
   background-color: var(--main-color);
   border-radius: 50%;
   display: inline-block;
+  text-align: center;
   top: -5px;
-  float: left;
 }
 .longuser {
   display: inline-block;
   text-align: left;
 }
-.round p {
-  position: absolute;
-  text-align: center;
-  top: -6px;
-  left: 4px;
-  color: #eee;
-}
 .today {
   color: var(--middle-color);
-  border: 5px solid var(--middle-color);
+  box-shadow: 0px 0px 20px 2px var(--accent-color);
+  z-index: 5;
 }
+
 .today .weekday {
+  font-size: 20px;
   color: var(--middle-color);
 }
 .weekend .weekday {
@@ -116,21 +107,12 @@ export default {
 .outside .daytop {
   background-color: #ddd;
 }
-.outside .user {
+.outside .cardbot {
   box-shadow: 0 0 0 0;
   border: 0;
-  display: block;
-  float: left;
   background-color: #aaa;
 }
-.daycard {
-  height: auto;
-  display: inline-block;
-  border-radius: 5px;
-  background-color: var(--bottom-color);
-}
 .daytop {
-  height: 70px;
   background-color: #fff;
 }
 .daytext {
@@ -138,7 +120,6 @@ export default {
   position: relative;
   display: inline-block;
   float: right;
-  right: 3px;
   z-index: 1;
 }
 .weekday {
@@ -152,7 +133,7 @@ export default {
   color: var(--accent-color);
 }
 .addentry{
-  display: block;
+  display: flex;
   position: relative;
   background-color: #fff;
   border: 1px dotted var(--shadow-color);
@@ -160,96 +141,96 @@ export default {
   font-size: 40px;
   border-radius: 5px;
   margin-bottom: 0px;
-  text-align: right;
-  top: 15px;
+  text-align: center;
   width: 40px;
   height: 30px;
-}
-.addentry p {
-  text-align: center;
-  position: absolute;
-  top: -45px;
-  left: 8px;
 }
 .addentry:hover {
   color: var(--secondary-color);
   box-shadow: inset -7px -7px 15px -10px var(--main-color);
   cursor: pointer;
 }
-.user {
+.users {
   font-size: 12px;
-  border-top: 2px solid var(--shadow-color);
-
+  box-shadow: inset 0px 5px 15px -10px var(--accent-color);
 }
 .userlist {
   list-style-type: none;
-  padding: 5px;
+  padding: 10px;
+  text-align: left;
   overflow: none;
 }
 
 .userlist li {
   position: relative;
   display: block;
-  float: left;
   color: #444;
 }
-@media screen and (max-width: 320px) {
-  .daycard {
-    width: 40px;
-    font-size: 10px;
-  }
+@media screen and (max-width: 340px) {
   .weekday {
     display: block;
     bottom: 0px;
-  }
-  .addentry {
-    top: 15px;
-    left: 5px;
-    width: 30px;
-    height: 30px;
-    color: #eee;
+    font-size: 10px;
   }
   .daytext {
     text-shadow: 0 0 0;
+    font-size: 20px;
   }
   .outside .daytext {
     text-shadow: 0 0 0;
   }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   .addentry {
+    align-self: flex-end;
+    top: -50px;
+    width: 30px;
+    height: 30px;
+    box-shadow: inset -11px -11px 2px -10px #222;
+  }
+  .daytop {
+    text-align: left;
+    text-indent: 2px;
+  }
+  .outside {
     display: none;
   }
+  .today {
+    color: var(--shadow-color);
+    box-shadow: 0px 0px 20px 2px var(--accent-color);
+    z-index: 5;
+  }
+  .today .weekday {
+    font-size: 20px;
+    color: var(--shadow-color);
+  }
+  .today .cardtop {
+    background-color: var(--main-color);
+  }
+  .today .cardbot {
+    background-color: var(--secondary-color);
+  }
+
 }
 @media screen and (min-width: 900px) {
-  .daycard {
-    width: 110px;
-    font-size: 15px;
-    left: 0px;
-  }
   .weekday {
     display: inline-block;
   }
   .addentry {
-    left: -3px;
-    top: -3px;
-    width: 40px;
-    height: 40px;
+    left: 30px;
+    top: -5px;
+    width: 50px;
+    height: 60px;
     box-shadow: inset -11px -11px 2px -10px #222;
   }
 }
 @media screen and (min-width: 1200px) {
-  .daycard {
-    width: 150px;
-    font-size: 15px;
-    left: 0px;
-  }
   .weekday {
     display: inline-block;
   }
   .addentry {
     left: -3px;
-    top: -3px;
+    top: -30px;
     width: 40px;
     height: 40px;
     box-shadow: inset -11px -11px 2px -10px #222;
