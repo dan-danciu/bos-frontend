@@ -98,7 +98,9 @@ export default {
     --disabled-color: #8d9fa8;
     --middle-color: #2eccb1;
   }
-
+  * {
+    box-sizing: border-box;
+  }
   html {
     background-color: #eee;
     height: 100%;
@@ -108,10 +110,11 @@ export default {
   }
   .grid-container {
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-columns: repeat(auto-fill, minmax(auto, 1fr));
     grid-template-rows: auto;
-    grid-gap: 15px;
-    padding: 15px;
+    grid-gap: 5px;
+    padding: 5px;
+    padding-bottom: 20px;
   }
   .card {
     display: flex;

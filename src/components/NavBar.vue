@@ -94,7 +94,7 @@ export default {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: var(--shadow-color);
+    background-color: var(--bottom-color);
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px #999;
     z-index: 1;

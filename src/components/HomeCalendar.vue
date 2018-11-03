@@ -206,7 +206,7 @@ export default {
     grid-gap: 5px;
     top: +50px;
     z-index: 150;
-    font-size: 25px;
+    font-size: 20px;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div id="userprofile">
     <div class="card">
       <div class="cardtop">
         <img :src="profile.image" alt="">
@@ -50,5 +50,7 @@ export default {
 </script>
 
 <style lang="css">
-
+#userprofile img {
+  object-fit: none;
+}
 </style>

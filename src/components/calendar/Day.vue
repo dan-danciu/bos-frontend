@@ -1,26 +1,38 @@
 <template lang="html">
-  <div class="card" :class="[{outside: month != refMonth}, {today: datesEqual}]">
-    <div class="cardtop daytop">
-      <div class="daytext" :class="{weekend: isWeekend}"><strong> {{ day }}</strong><div class="weekday">{{ daysOfWeek[weekDay] }}</div></div>
-      <div class="addentry">
-        <strong> +</strong>
+  <div id="day" :class="{outside: month != refMonth}">
+    <div class="grid-container" :class="{today: datesEqual}">
+      <div class="card caltop">
+        <div class="ear1">.</div><div class="ear2">.</div>
       </div>
-    </div>
-    <div class="cardbot users">
-      <ul class="userlist">
-        <li>
-          <div class="round">
-            SU
+      <div class="card whole">
+        <div class="cardtop">
+          <div class="daytop">
+            <div class="daytext" :class="{weekend: isWeekend}"><strong> {{ day }}</strong><div class="weekday">{{ daysOfWeek[weekDay] }}</div></div>
+
           </div>
-          <div class="longuser">some user</div>
-        </li>
-        <li>
-          <div class="round">
-            SO
+          <div class="addentry">
+            <strong>+</strong>
           </div>
-          <div class="longuser">some other user</div>
-        </li>
-      </ul>
+          <div class="cardbot users">
+            <ul class="userlist">
+              <li>
+                <div class="round">
+                  SU
+                </div>
+                <div class="longuser">some user</div>
+              </li>
+              <li>
+                <div class="round">
+                  SO
+                </div>
+                <div class="longuser">some other user</div>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -70,6 +82,20 @@ export default {
 </script>
 
 <style lang="css">
+#day .grid-container {
+  grid-gap: 10px;
+  padding: 1px;
+  height: 100%;
+  border-radius: 10px;
+}
+#day .daytop {
+  height: 50px;
+  border-radius: 5px;
+}
+#day .cardbot {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
 .round {
   position: relative;
   height: 25px;
@@ -86,10 +112,10 @@ export default {
 }
 .today {
   color: var(--middle-color);
-  box-shadow: 0px 0px 20px 2px var(--accent-color);
+  box-shadow: 0px 0px 20px 7px var(--accent-color);
+  font-weight: bolder;
   z-index: 5;
 }
-
 .today .weekday {
   font-size: 20px;
   color: var(--middle-color);
@@ -104,6 +130,40 @@ export default {
   color: var(--disabled-color);
   text-shadow: 0 0 0;
 }
+.ear1 {
+  display: inline-block;
+  color: var(--secondary-color);
+  background-color: var(--main-color);
+  position: relative;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 10%;
+  height: 15px;
+  top: -15px;
+  left: 10%;
+}
+.today .ear1, .today .ear2 {
+  background-color: var(--accent-color);
+}
+.ear2 {
+  display: inline-block;
+  color: var(--secondary-color);
+  background-color: var(--main-color);
+  position: relative;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 10%;
+  height: 15px;
+  top: -30px;
+  left: 80%;
+}
+.caltop {
+  background-color: var(--main-color);
+  height: 30px;
+}
+.today .caltop {
+  background-color: var(--accent-color);
+}
 .outside .daytop {
   background-color: #ddd;
 }
@@ -113,7 +173,9 @@ export default {
   background-color: #aaa;
 }
 .daytop {
+  border-top: 3px solid var(--bottom-color);
   background-color: #fff;
+  width: 100%;
 }
 .daytext {
   font-size: 25px;
@@ -134,15 +196,16 @@ export default {
 }
 .addentry{
   display: flex;
+  align-self: flex-end;
   position: relative;
   background-color: #fff;
   border: 1px dotted var(--shadow-color);
   color: var(--main-color);
-  font-size: 40px;
+  font-size: 25px;
   border-radius: 5px;
   margin-bottom: 0px;
   text-align: center;
-  width: 40px;
+  width: 100%;
   height: 30px;
 }
 .addentry:hover {
@@ -181,12 +244,8 @@ export default {
   }
 }
 @media screen and (max-width: 600px) {
-  .addentry {
-    align-self: flex-end;
-    top: -50px;
-    width: 30px;
-    height: 30px;
-    box-shadow: inset -11px -11px 2px -10px #222;
+  #day .grid-container {
+    margin-bottom: 30px;
   }
   .daytop {
     text-align: left;
@@ -200,40 +259,24 @@ export default {
     box-shadow: 0px 0px 20px 2px var(--accent-color);
     z-index: 5;
   }
+  .weekday {
+    display: inline-block;
+  }
   .today .weekday {
     font-size: 20px;
     color: var(--shadow-color);
   }
-  .today .cardtop {
+  .today .daytop {
     background-color: var(--main-color);
   }
   .today .cardbot {
-    background-color: var(--secondary-color);
+    background-color: var(--shadow-color);
   }
 
-}
-@media screen and (min-width: 900px) {
-  .weekday {
-    display: inline-block;
-  }
-  .addentry {
-    left: 30px;
-    top: -5px;
-    width: 50px;
-    height: 60px;
-    box-shadow: inset -11px -11px 2px -10px #222;
-  }
 }
 @media screen and (min-width: 1200px) {
   .weekday {
     display: inline-block;
-  }
-  .addentry {
-    left: -3px;
-    top: -30px;
-    width: 40px;
-    height: 40px;
-    box-shadow: inset -11px -11px 2px -10px #222;
   }
 }
 </style>
