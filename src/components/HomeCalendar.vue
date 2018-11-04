@@ -2,27 +2,32 @@
   <div class="container blu">
     <h1>Hello jello</h1>
     <div class="grid-container selector">
-      <div id="item1" class="container card up" @click="increaseMonth">
-        &#9650;
-      </div>
-      <div id="item2" class="container card month" @click="showMonthSelector = !showMonthSelector">
-        {{ months[refMonth] }}
+      <div class="one">
+        <div class="container up" @click="increaseMonth">
+          &#9650;
+        </div>
+        <div class="container card month" @click="showMonthSelector = !showMonthSelector">
+          {{ months[refMonth] }}
 
-        <MonthSelector v-if="showMonthSelector" :monthhi="today.month" @pickedMonth="changeMonth($event)"/>
+          <MonthSelector v-if="showMonthSelector" :monthhi="today.month" @pickedMonth="changeMonth($event)"/>
+        </div>
+        <div class="container down" @click="decreaseMonth">
+          &#9660;
+        </div>
       </div>
-      <div id="item3" class="container card down" @click="decreaseMonth">
-        &#9660;
+      <div class="card two">
+        <div class="container card up" @click="refYear += 1">
+          &#9650;
+        </div>
+        <div class="container year">
+          {{ refYear }}
+        </div>
+        <div class="container card down" @click="refYear -= 1">
+          &#9660;
+        </div>
       </div>
-      <div id="item4" class="container card up" @click="refYear += 1">
-        &#9650;
       </div>
-      <div id="item5" class="container card year">
-        {{ refYear }}
-      </div>
-      <div id="item6" class="container card down" @click="refYear -= 1">
-        &#9660;
-      </div>
-    </div>
+
     <div class="calendar">
       <Week v-for="(week, index) in weeks" :key="index" :week="week" :today="today" :refMonth="refMonth"/>
     </div>
@@ -86,6 +91,9 @@ export default {
     generateWeeks() {
       let first = new Date(this.refYear, this.refMonth, 1);
       let dayow = first.getDay();
+      if (dayow == 0) {
+        dayow = 7;
+      }
       first.setDate(first.getDate() - dayow + 1);
       this.weeks[0] = first;
       let month = this.refMonth;
@@ -128,83 +136,76 @@ export default {
 <style lang="css">
 .selector {
   display: grid;
-  font-size: 15px;
+  font-size: 25px;
   position: absolute;
-  grid-gap: 10px;
-  grid-column-gap: 30px;
-  top: 30px;
+  grid-gap: 0px;
+  columns: 2;
+  padding-left: 10px;
+  grid-column-gap: 50px;
+  box-shadow: 0 0 0 0;
   float: left;
-  color: var(--main-color);
-  top: -5px;
+  color: var(--shadow-color);
+  top: +5px;
+  z-index: 100;
+}
+.one {
+  grid-column: 1;
+  grid-row: 1;
+}
+.two {
+  grid-column: 2;
+  grid-row: 1;
 }
 .month {
-  padding: 5px;
-  border-radius: 10%;
-  background-color: #fff;
+  border-radius: 2px;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
 }
 .month:hover {
-  background-color: var(--shadow-color);
+  background-color: var(--highlight-color);
   cursor: pointer;
 }
 .year {
-  padding: 5px;
-  border-radius: 10%;
-  background-color: #fff;
+  border-radius: 2px;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
 }
-#item1 {
-  grid-column: 1;
-  grid-row: 1;
-}
-#item2 {
-  grid-row: 2;
-}
-#item3 {
-  grid-row: 3;
-}
-#item5 {
-  grid-column: 2;
-  grid-row: 2;
-}
-#item6 {
-  grid-column: 2;
-  grid-row: 3;
-}
+
 .up:hover {
-  background-color: var(--shadow-color);
+  color: var(--accent-color);
+  background-color: var(--highlight-color);
   cursor: pointer;
-  top: +3px;
+  top: +1px;
 }
 .down:hover {
-  background-color: var(--shadow-color);
+  color: var(--accent-color);
+  background-color: var(--highlight-color);
   cursor: pointer;
-  top: +3px;
+  top: +1px;
 }
 .blu {
-  padding-top: 15px;
+  padding-top: 25px;
   background-image: linear-gradient(#fff, var(--main-color) 10%, var(--secondary-color));
 }
 .calendar {
-  background-color: var(--bottom-color);
   padding-top: 20px;
   padding-bottom: 5px;
-  border-top: 2px solid var(--middle-color);
-  background-image: linear-gradient(var(--shadow-color), var(--bottom-color) 3%);
+  border-top: 2px solid var(--main-color);
+  background-image: linear-gradient(var(--highlight-color), #fff 3%);
   overflow: none;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 900px) {
   .blu h1 {
     text-align: right;
     position: relative;
     top: 35px;
   }
+}
+@media screen and (max-width: 600px) {
   .selector {
     position: fixed;
     grid-gap: 5px;
-    top: +50px;
+    top: +65px;
     z-index: 150;
     font-size: 20px;
   }

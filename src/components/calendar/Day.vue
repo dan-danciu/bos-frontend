@@ -11,7 +11,7 @@
 
           </div>
           <div class="addentry">
-            <strong>+</strong>
+            <p>Add entry</p> +
           </div>
           <div class="cardbot users">
             <ul class="userlist">
@@ -164,16 +164,19 @@ export default {
 .today .caltop {
   background-color: var(--accent-color);
 }
+.outside .caltop, .outside .ear1, .outside .ear2 {
+  background-color: var(--shadow-color);
+}
 .outside .daytop {
   background-color: #ddd;
 }
 .outside .cardbot {
   box-shadow: 0 0 0 0;
   border: 0;
-  background-color: #aaa;
+  background-color: var(--disabled-color);
 }
 .daytop {
-  border-top: 3px solid var(--bottom-color);
+  border-top: 3px solid var(--main-color);
   background-color: #fff;
   width: 100%;
 }
@@ -196,17 +199,23 @@ export default {
 }
 .addentry{
   display: flex;
-  align-self: flex-end;
   position: relative;
   background-color: #fff;
-  border: 1px dotted var(--shadow-color);
+  border: 1px dotted var(--highlight-color);
   color: var(--main-color);
   font-size: 25px;
   border-radius: 5px;
   margin-bottom: 0px;
-  text-align: center;
   width: 100%;
   height: 30px;
+  font-weight: bolder;
+}
+.addentry p {
+  position: relative;
+
+  top: -3px;
+  width: 100%;
+
 }
 .addentry:hover {
   color: var(--secondary-color);
@@ -229,20 +238,6 @@ export default {
   display: block;
   color: #444;
 }
-@media screen and (max-width: 340px) {
-  .weekday {
-    display: block;
-    bottom: 0px;
-    font-size: 10px;
-  }
-  .daytext {
-    text-shadow: 0 0 0;
-    font-size: 20px;
-  }
-  .outside .daytext {
-    text-shadow: 0 0 0;
-  }
-}
 @media screen and (max-width: 600px) {
   #day .grid-container {
     margin-bottom: 30px;
@@ -255,7 +250,7 @@ export default {
     display: none;
   }
   .today {
-    color: var(--shadow-color);
+    color: var(--highlight-color);
     box-shadow: 0px 0px 20px 2px var(--accent-color);
     z-index: 5;
   }
@@ -264,19 +259,30 @@ export default {
   }
   .today .weekday {
     font-size: 20px;
-    color: var(--shadow-color);
+    color: var(--highlight-color);
   }
   .today .daytop {
     background-color: var(--main-color);
   }
   .today .cardbot {
-    background-color: var(--shadow-color);
+    background-color: var(--highlight-color);
   }
-
+  .addentry p {
+    top: -5px;
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 601px) {
+  .addentry p {
+    font-size: 10px;
+  }
 }
 @media screen and (min-width: 1200px) {
   .weekday {
     display: inline-block;
+  }
+  .addentry p {
+    font-size: 10px;
   }
 }
 </style>

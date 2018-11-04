@@ -3,7 +3,7 @@
     <div class="container">
 
       <NavBar :signOut="signOut" :authenticated="authenticated" @pageChange="page = $event"/><br>
-      <hr><hr><hr><hr>
+      <br><br><br><br>
       <div class="card">
         <google-auth v-if="id_token == ''" :attachSignin="attachSignin" @authenticated="auth2 = $event"/>
         <HomeCalendar v-if="page == 'home'"/>
@@ -94,32 +94,31 @@ export default {
     --secondary-color: #1de08b;
     --accent-color: #d84f13;
     --bottom-color: #fff9f2;
-    --shadow-color: #afddda;
+    --highlight-color: #afddda;
     --disabled-color: #8d9fa8;
     --middle-color: #2eccb1;
+    --shadow-color: #555;
   }
   * {
     box-sizing: border-box;
   }
   html {
-    background-color: #eee;
     height: 100%;
     min-width: 100%;
     overflow-x: hidden;
-
   }
   .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(auto, 1fr));
     grid-template-rows: auto;
-    grid-gap: 5px;
+    grid-gap: 1px;
     padding: 5px;
     padding-bottom: 20px;
   }
   .card {
     display: flex;
     flex-flow: column;
-    box-shadow: 0 4px 8px 0 #999;
+    box-shadow: 0 4px 8px 0 var(--shadow-color);
     transition: 0.3s;
     border-radius: 5px;
     background-color: #fff;
@@ -132,7 +131,7 @@ export default {
   }
   .cardbot {
     display: flex;
-    background-color: var(--bottom-color);
+    background-color: #fff;
     height: auto;
   }
   .container {

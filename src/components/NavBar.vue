@@ -7,7 +7,7 @@
       <a href="#" v-if="authenticated" @click="setPage('allusers')" :class="{active: page=='allusers'}">All Users</a>
       <a href="#" class="disabled" v-if="!authenticated">All Users</a>
       <div class="dropdown" v-if="authenticated">
-        <button href="#" class="dropbtn">User</button>
+        <button href="#" class="dropbtn">User&#9662;</button>
         <div class="dropdown-content">
           <a href="#" @click="setPage('profile')">Profile</a>
           <a href="#" @click="signOut">Signout</a>
@@ -43,10 +43,11 @@ export default {
 .topnav {
   overflow: hidden;
   background-image: linear-gradient(to right, var(--main-color) , var(--secondary-color));
-  box-shadow: 0 4px 8px 0 #999;
+  box-shadow: 0 4px 8px 0 var(--shadow-color);
   display: block;
+  top: -10px;
   width: 100%;
-  position: fixed;
+  position: absolute;
   z-index: 200;
 }
 
@@ -57,7 +58,7 @@ export default {
 .topnav a {
   float: left;
   display: block;
-  color: #f2f2f2;
+  color: #ddd;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -66,7 +67,7 @@ export default {
 
 .topnav .active {
   background-color: var(--accent-color);
-  color: var(--shadow-color);
+  color: var(--highlight-color);
   font-weight: bold;
 }
 
@@ -110,7 +111,7 @@ export default {
 }
 
 .topnav a:hover, .dropdown:hover .dropbtn {
-  background-color: var(--shadow-color);
+  background-color: var(--highlight-color);
   color: var(--main-color);
 }
 
@@ -129,6 +130,9 @@ export default {
 }
 
 @media screen and (max-width: 600px) {
+  .topnav {
+    position: fixed;
+  }
   .topnav a:not(:first-child), .dropdown .dropbtn {
     display: none;
   }
@@ -137,7 +141,6 @@ export default {
     display: block;
   }
 }
-
 @media screen and (max-width: 600px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive .icon {
