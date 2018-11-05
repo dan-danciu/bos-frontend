@@ -1,0 +1,1 @@
+.monthselector{position:absolute;-webkit-columns:2;columns:2;border:1px solid var(--main);z-index:100}.current,.monthselector{background-color:var(--lightmain)}.current{color:var(--main)}@media screen and (max-width:350px){.monthselector{max-width:210px}}
