@@ -2,7 +2,7 @@
   <div id="day" :class="{outside: month != refMonth}">
     <div class="grid-container" :class="{today: datesEqual}">
       <div class="card caltop">
-        <div class="ear1">.</div><div class="ear2">.</div>
+        <div class="ear1">'</div><div class="ear2">'</div>
       </div>
       <div class="card whole">
         <div class="cardtop">
@@ -83,7 +83,7 @@ export default {
 
 <style lang="css">
 #day .grid-container {
-  grid-gap: 10px;
+  grid-gap: 1px;
   padding: 1px;
   height: 100%;
   border-radius: 10px;
@@ -100,7 +100,7 @@ export default {
   position: relative;
   height: 25px;
   width: 25px;
-  background-color: var(--main-color);
+  background-color: var(--main);
   border-radius: 50%;
   display: inline-block;
   text-align: center;
@@ -111,61 +111,68 @@ export default {
   text-align: left;
 }
 .today {
-  color: var(--middle-color);
-  box-shadow: 0px 0px 20px 7px var(--accent-color);
+  color: var(--middle);
+  box-shadow: 0px 0px 20px 7px var(--accent);
   font-weight: bolder;
   z-index: 5;
 }
 .today .weekday {
   font-size: 20px;
-  color: var(--middle-color);
+  color: var(--middle);
 }
 .weekend .weekday {
-  color: var(--accent-color);
+  color: var(--accent);
 }
 .outside {
-  color: var(--disabled-color);
+  color: var(--disabled);
 }
 .outside .weekday {
-  color: var(--disabled-color);
+  color: var(--disabled);
   text-shadow: 0 0 0;
 }
 .ear1 {
   display: inline-block;
-  color: var(--secondary-color);
-  background-color: var(--main-color);
+  color: var(--main);
+  background-color: var(--lightmain);
   position: relative;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  border-top: 1px solid var(--main);
+  border-left: 1px solid var(--main);
+  border-right: 1px solid var(--main);
   width: 10%;
   height: 15px;
   top: -15px;
   left: 10%;
 }
 .today .ear1, .today .ear2 {
-  background-color: var(--accent-color);
+  background-color: var(--accent);
 }
 .ear2 {
   display: inline-block;
-  color: var(--secondary-color);
-  background-color: var(--main-color);
+  color: var(--main);
+  background-color: var(--lightmain);
   position: relative;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  border-top: 1px solid var(--main);
+  border-left: 1px solid var(--main);
+  border-right: 1px solid var(--main);
   width: 10%;
   height: 15px;
   top: -30px;
   left: 80%;
 }
 .caltop {
-  background-color: var(--main-color);
+  background-image: linear-gradient(var(--lightmain), var(--main) 55%);
+  border: 1px solid var(--main);
   height: 30px;
 }
 .today .caltop {
-  background-color: var(--accent-color);
+  background-image: linear-gradient(var(--accent), var(--main) 55%);
 }
 .outside .caltop, .outside .ear1, .outside .ear2 {
-  background-color: var(--shadow-color);
+  background-image: linear-gradient(var(--lightmain), var(--shadow) 55%);
 }
 .outside .daytop {
   background-color: #ddd;
@@ -173,10 +180,10 @@ export default {
 .outside .cardbot {
   box-shadow: 0 0 0 0;
   border: 0;
-  background-color: var(--disabled-color);
+  background-color: var(--disabled);
 }
 .daytop {
-  border-top: 3px solid var(--main-color);
+  border-top: 3px solid var(--main);
   background-color: #fff;
   width: 100%;
 }
@@ -192,17 +199,17 @@ export default {
   bottom: 0px;
   font-size: 15px;
   text-decoration: overline;
-  color: var(--main-color);
+  color: var(--main);
 }
 .weekend {
-  color: var(--accent-color);
+  color: var(--accent);
 }
 .addentry{
   display: flex;
   position: relative;
-  background-color: #fff;
-  border: 1px dotted var(--highlight-color);
-  color: var(--main-color);
+  background-color: var(--lightmain);
+  border: 1px dotted var(--highlight);
+  color: var(--main);
   font-size: 25px;
   border-radius: 5px;
   margin-bottom: 0px;
@@ -218,13 +225,13 @@ export default {
 
 }
 .addentry:hover {
-  color: var(--secondary-color);
-  box-shadow: inset -7px -7px 15px -10px var(--main-color);
+  color: var(--secondary);
+  box-shadow: inset -7px -7px 15px -10px var(--main);
   cursor: pointer;
 }
 .users {
   font-size: 12px;
-  box-shadow: inset 0px 5px 15px -10px var(--accent-color);
+  box-shadow: inset 0px 5px 15px -10px var(--accent);
 }
 .userlist {
   list-style-type: none;
@@ -250,8 +257,8 @@ export default {
     display: none;
   }
   .today {
-    color: var(--highlight-color);
-    box-shadow: 0px 0px 20px 2px var(--accent-color);
+    color: var(--highlight);
+    box-shadow: 0px 0px 20px 2px var(--accent);
     z-index: 5;
   }
   .weekday {
@@ -259,13 +266,13 @@ export default {
   }
   .today .weekday {
     font-size: 20px;
-    color: var(--highlight-color);
+    color: var(--highlight);
   }
   .today .daytop {
-    background-color: var(--main-color);
+    background-color: var(--main);
   }
   .today .cardbot {
-    background-color: var(--highlight-color);
+    background-color: var(--highlight);
   }
   .addentry p {
     top: -5px;

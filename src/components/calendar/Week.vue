@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="daycards" class="grid-container">
-    <day id="day" v-for="(day, index) in weekDays" :key="index" :date="day" :today="today" :refMonth="refMonth" :class="{day7: index == 6}"/>
+    <day id="day" v-for="(day, index) in weekDays" :key="index" :date="day" :today="today" :refMonth="refMonth" :class="['day'+(index+1)]"/>
   </div>
 </template>
 
@@ -20,7 +20,15 @@ export default {
     }
   },
   watch: {
-    week: function() {
+    week() {
+      this.calculateWeek();
+      }
+  },
+  created() {
+    this.calculateWeek();
+  },
+  methods: {
+    calculateWeek() {
       this.weekDays = [];
       this.weekDays[0] = this.week;
       for (var i = 1; i < 7; i++) {
@@ -28,14 +36,6 @@ export default {
         newDay.setDate(this.week.getDate() + i);
         this.weekDays[i] = newDay;
       }
-    }
-  },
-  created() {
-    this.weekDays[0] = this.week;
-    for (var i = 1; i < 7; i++) {
-      let newDay = new Date(this.week.getTime());
-      newDay.setDate(this.week.getDate() + i);
-      this.weekDays[i] = newDay;
     }
   }
 }

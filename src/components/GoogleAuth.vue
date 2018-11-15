@@ -12,13 +12,14 @@
 
 <script>
 export default {
+  props: {
+    authenticate: Function
+  },
   data() {
     return {
-      auth2: null
+      auth2: null,
+      id_token: ''
     }
-  },
-  props: {
-    attachSignin: Function
   },
   mounted() {
     let vm = this;
@@ -30,11 +31,22 @@ export default {
         // Request scopes in addition to 'profile' and 'email'
         //scope: 'additional_scope'
       });
-      vm.$emit('authenticated', vm.auth2);
       vm.attachSignin(document.getElementById('customBtn'));
     });
+  },
+  methods: {
+    attachSignin(element) {
+      var vm = this;
+      this.auth2.attachClickHandler(element, {},
+          function(googleUser) {
+            vm.id_token = googleUser.getAuthResponse().id_token;
+            vm.$emit('authenticated', {'id_token':vm.id_token, 'auth':vm.auth2});
+            vm.authenticate();
+          }, function(error) {
+            alert(JSON.stringify(error, null, 2));
+          });
+    }
   }
-
 }
 </script>
 

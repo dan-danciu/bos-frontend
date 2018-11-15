@@ -42,8 +42,8 @@ export default {
 <style lang="css" scoped>
 .topnav {
   overflow: hidden;
-  background-image: linear-gradient(to right, var(--main-color) , var(--secondary-color));
-  box-shadow: 0 4px 8px 0 var(--shadow-color);
+  background-image: linear-gradient(to right, var(--main) , var(--secondary));
+  box-shadow: 0 4px 8px 0 var(--shadow);
   display: block;
   top: -10px;
   width: 100%;
@@ -66,8 +66,8 @@ export default {
 }
 
 .topnav .active {
-  background-color: var(--accent-color);
-  color: var(--highlight-color);
+  background-color: var(--accent);
+  color: var(--highlight);
   font-weight: bold;
 }
 
@@ -95,7 +95,7 @@ export default {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: var(--bottom-color);
+    background-color: var(--bottom);
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px #999;
     z-index: 1;
@@ -111,8 +111,8 @@ export default {
 }
 
 .topnav a:hover, .dropdown:hover .dropbtn {
-  background-color: var(--highlight-color);
-  color: var(--main-color);
+  background-color: var(--highlight);
+  color: var(--main);
 }
 
 .dropdown-content a:hover {
@@ -126,12 +126,13 @@ export default {
 }
 
 .topnav .disabled {
-  color: var(--disabled-color);
+  color: var(--disabled);
 }
 
 @media screen and (max-width: 600px) {
   .topnav {
     position: fixed;
+    z-index: 150;
   }
   .topnav a:not(:first-child), .dropdown .dropbtn {
     display: none;
@@ -140,8 +141,6 @@ export default {
     float: right;
     display: block;
   }
-}
-@media screen and (max-width: 600px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive .icon {
     position: absolute;

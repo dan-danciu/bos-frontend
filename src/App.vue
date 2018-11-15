@@ -1,14 +1,16 @@
 <template>
   <div id="app" class="container">
-    <div class="container">
 
-      <NavBar :signOut="signOut" :authenticated="authenticated" @pageChange="page = $event"/><br>
-      <br><br><br><br>
+    <NavBar :signOut="signOut" :authenticated="authenticated" @pageChange="page = $event"/><br>
+    <div id="main" class="container">
+
+
+      <br><br>
       <div class="card">
-        <google-auth v-if="id_token == ''" :attachSignin="attachSignin" @authenticated="auth2 = $event"/>
+        <google-auth v-if="auth == null" :authenticate="authenticate" @authenticated="auth = $event"/>
         <HomeCalendar v-if="page == 'home'"/>
-        <UserProfile :id_token="id_token" :profile="profile" v-if="page == 'profile'"/>
-        <AllUsers :id_token="id_token" v-if="page == 'allusers'"/>
+        <UserProfile :id_token="this.auth.id_token" :profile="profile" v-if="page == 'profile'"/>
+        <AllUsers :id_token="this.auth.id_token" v-if="page == 'allusers'"/>
         <Loading v-if="loading"/>
       </div>
     </div>
@@ -29,8 +31,7 @@ export default {
   },
   data: function() {
     return {
-      auth2: null,
-      id_token: '',
+      auth: null,
       profile: {},
       authenticated: false,
       page: 'login',
@@ -41,22 +42,20 @@ export default {
     }
   },
   methods: {
-    attachSignin(element) {
+    signOut() {
       var vm = this;
-      this.auth2.attachClickHandler(element, {},
-          function(googleUser) {
-            vm.id_token = googleUser.getAuthResponse().id_token;
-            vm.authenticate();
-          }, function(error) {
-            alert(JSON.stringify(error, undefined, 2));
-          });
+      this.auth.auth2.signOut().then(function () {
+        vm.profile.user_id = '';
+        vm.authenticated = false;
+        vm.page = 'login';
+      });
     },
     authenticate() {
       this.loading = true;
       axios
         .get('https://hzyo7y0ukj.execute-api.eu-west-1.amazonaws.com/dev/auth', {
           headers: {
-            "Authorization": this.id_token
+            "Authorization": this.auth.id_token
           }
         })
         .then(response => {
@@ -70,14 +69,6 @@ export default {
           this.loading = false;
           this.page = 'home';
         })
-    },
-    signOut() {
-      var vm = this;
-      this.auth2.signOut().then(function () {
-        vm.id_token = '';
-        vm.authenticated = false;
-        vm.page = 'login';
-      });
     }
   }
 }
@@ -90,14 +81,18 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    --main-color: #4facff;
-    --secondary-color: #1de08b;
-    --accent-color: #d84f13;
-    --bottom-color: #fff9f2;
-    --highlight-color: #afddda;
-    --disabled-color: #8d9fa8;
-    --middle-color: #2eccb1;
-    --shadow-color: #555;
+    --main: #4facff;
+    --lightmain: #d1e9ff;
+    --secondary: #1de08b;
+    --accent: #bc2c00;
+    --bottom: #fff9f2;
+    --highlight: #afddda;
+    --disabled: #8d9fa8;
+    --middle: #2eccb1;
+    --shadow: #555;
+  }
+  #main {
+    max-width: 1200px;
   }
   * {
     box-sizing: border-box;
@@ -109,7 +104,6 @@ export default {
   }
   .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(auto, 1fr));
     grid-template-rows: auto;
     grid-gap: 1px;
     padding: 5px;
@@ -118,7 +112,7 @@ export default {
   .card {
     display: flex;
     flex-flow: column;
-    box-shadow: 0 4px 8px 0 var(--shadow-color);
+    box-shadow: 0 4px 8px 0 var(--shadow);
     transition: 0.3s;
     border-radius: 5px;
     background-color: #fff;

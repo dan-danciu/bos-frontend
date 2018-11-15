@@ -24,7 +24,7 @@ export default {
   height: 30px;
   width: 30px;
   margin: 10px;
-  background-color: var(--main-color);
+  background-color: var(--main);
   border-radius: 50%;
 }
 @-webkit-keyframes rotation {
@@ -34,8 +34,8 @@ export default {
   to {
       -webkit-transform: rotate(359deg);
   }
-  0% {background-color: var(--main-color);}
-  50% {background-color: var(--secondary-color);}
-  100% {background-color: var(--main-color);}
+  0% {background-color: var(--main);}
+  50% {background-color: var(--secondary);}
+  100% {background-color: var(--main);}
 }
 </style>

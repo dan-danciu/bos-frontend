@@ -41,23 +41,19 @@ export default {
 
 <style lang="css">
 .monthselector {
-  background-color: #fff;
   position: absolute;
   columns: 2;
-  background-color: var(--main-color);
-  border: 1px solid var(--main-color);
+  background-color: var(--lightmain);
+  border: 1px solid var(--main);
   z-index: 100;
 }
-.monthselector .month:hover {
-  color: var(--accent-color);
-  background-color: var(--highlight-color);
-  cursor: pointer;
-}
-.month {
-  width: 150px;
-}
 .current {
-  color: var(--secondary-color);
-  background-color: var(--main-color);
+  color: var(--main);
+  background-color: var(--lightmain);
+}
+@media screen and (max-width: 350px) {
+.monthselector {
+  max-width: 210px;
+}
 }
 </style>
