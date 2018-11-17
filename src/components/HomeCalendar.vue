@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="container blu">
     <ClickOutside v-if="showMonthSelector" @closeEvent="closeEvent" />
-    <h1>Hello jello</h1>
+    <h1>Hello jello!</h1>
     <div class="grid-container selector">
       <div class="one">
         <div class="container up" @click="increaseMonth">
