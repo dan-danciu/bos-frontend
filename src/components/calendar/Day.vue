@@ -111,16 +111,14 @@ export default {
   text-align: left;
 }
 .today {
-  color: var(--middle);
+  color: var(--accent);
   box-shadow: 0px 0px 20px 7px var(--accent);
   font-weight: bolder;
   z-index: 5;
+  background-image: linear-gradient(var(--accent), var(--main) 55%);
 }
 .today .weekday {
   font-size: 20px;
-  color: var(--middle);
-}
-.weekend .weekday {
   color: var(--accent);
 }
 .outside {
@@ -199,10 +197,13 @@ export default {
   bottom: 0px;
   font-size: 15px;
   text-decoration: overline;
-  color: var(--main);
+  color: var(--secondary);
 }
 .weekend {
-  color: var(--accent);
+  color: var(--main);
+}
+.weekend .weekday {
+  color: var(--main);
 }
 .addentry{
   display: flex;

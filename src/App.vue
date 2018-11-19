@@ -81,15 +81,7 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    --main: #4facff;
-    --lightmain: #d1e9ff;
-    --secondary: #1de08b;
-    --accent: #bc2c00;
-    --bottom: #fff9f2;
-    --highlight: #afddda;
-    --disabled: #8d9fa8;
-    --middle: #2eccb1;
-    --shadow: #555;
+
   }
   #main {
     max-width: 1200px;
@@ -98,9 +90,19 @@ export default {
     box-sizing: border-box;
   }
   html {
+    --main: #4facff;
+    --lightmain: #d1e9ff;
+    --secondary: #002766;
+    --accent: #bc2c00;
+    --bottom: #fff9f2;
+    --highlight: #afddda;
+    --disabled: #8d9fa8;
+    --middle: #2eccb1;
+    --shadow: #555;
     height: 100%;
     min-width: 100%;
     overflow-x: hidden;
+    background-color: var(--lightmain);
   }
   .grid-container {
     display: grid;
@@ -132,8 +134,14 @@ export default {
       display: block;
       position: relative;
       width: auto;
+      border-radius: 5px;
   }
   .clickable {
     cursor: pointer;
+  }
+  @media screen and (min-width: 1200px) {
+    #main {
+      margin-left: 10%;
+    }
   }
 </style>

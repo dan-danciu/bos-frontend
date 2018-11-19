@@ -200,13 +200,15 @@ export default {
 }
 .blu {
   padding-top: 25px;
-  background-image: linear-gradient(#fff, var(--lightmain), var(--secondary) 13%);
+  background-image: linear-gradient(var(--lightmain), var(--main) 13%);
 }
 .calendar {
-  padding-top: 20px;
+  margin-left: 5px;
+  padding-top: 25px;
   padding-bottom: 5px;
+  border-radius: 5px;
   border-top: 2px solid var(--main);
-  background-image: linear-gradient(var(--highlight), #fff 3%);
+  background-image: linear-gradient(var(--highlight), var(--lightmain) 2%, var(--main) 99%);
 }
 @media screen and (max-width: 900px) {
   .blu h1 {
