@@ -44,6 +44,7 @@ export default {
   created() {
     eventBus.$on('authenticated', (auth) => {
       this.auth = auth;
+      this.authenticate();
     });
   },
   methods: {
