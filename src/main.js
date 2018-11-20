@@ -14,6 +14,7 @@ const router = new VueRouter({
   mode: 'history'
 })
 
+
 Vue.component('google-auth', () => import("./components/GoogleAuth.vue"));
 Vue.component('Loading', () => import("./components/Loading.vue"));
 
