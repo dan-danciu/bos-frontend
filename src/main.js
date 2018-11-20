@@ -1,7 +1,18 @@
 import Vue from 'vue'
+import VueRouter from 'vue-router'
+import { routes } from './routes'
 
 import App from './App.vue'
 import Unsupported from './Unsupported.vue'
+
+export const eventBus = new Vue();
+
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+  routes,
+  mode: 'history'
+})
 
 Vue.component('google-auth', () => import("./components/GoogleAuth.vue"));
 Vue.component('Loading', () => import("./components/Loading.vue"));
@@ -44,6 +55,7 @@ switch (browser && browser.name) {
 
   default:
     window.app = new Vue({
+      router,
       render: h => h(App)
     }).$mount('#app')
 }

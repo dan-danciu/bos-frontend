@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { eventBus } from '../main';
+
 export default {
   props: {
     authenticate: Function
@@ -40,7 +42,8 @@ export default {
       this.auth2.attachClickHandler(element, {},
           function(googleUser) {
             vm.id_token = googleUser.getAuthResponse().id_token;
-            vm.$emit('authenticated', {'id_token':vm.id_token, 'auth':vm.auth2});
+            //vm.$emit('authenticated', {'id_token':vm.id_token, 'auth':vm.auth2});
+            eventBus.$emit('authenticated', {'id_token':vm.id_token, 'auth':vm.auth2});
             vm.authenticate();
           }, function(error) {
             alert(JSON.stringify(error, null, 2));

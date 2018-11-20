@@ -130,8 +130,8 @@ export default {
 }
 .ear1 {
   display: inline-block;
-  color: var(--main);
-  background-color: var(--lightmain);
+  color: var(--secondary);
+  background-color: var(--main);
   position: relative;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -148,8 +148,8 @@ export default {
 }
 .ear2 {
   display: inline-block;
-  color: var(--main);
-  background-color: var(--lightmain);
+  color: var(--secondary);
+  background-color: var(--main);
   position: relative;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -162,12 +162,12 @@ export default {
   left: 80%;
 }
 .caltop {
-  background-image: linear-gradient(var(--lightmain), var(--main) 55%);
+  background-image: linear-gradient(var(--main), var(--secondary) 55%);
   border: 1px solid var(--main);
   height: 30px;
 }
 .today .caltop {
-  background-image: linear-gradient(var(--accent), var(--main) 55%);
+  background-image: linear-gradient(var(--accent), var(--main));
 }
 .outside .caltop, .outside .ear1, .outside .ear2 {
   background-image: linear-gradient(var(--lightmain), var(--shadow) 55%);

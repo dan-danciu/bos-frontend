@@ -7,8 +7,9 @@
 
       <br><br>
       <div class="card">
-        <google-auth v-if="auth == null" :authenticate="authenticate" @authenticated="auth = $event"/>
-        <HomeCalendar v-if="page == 'home'"/>
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
         <UserProfile :id_token="this.auth.id_token" :profile="profile" v-if="page == 'profile'"/>
         <AllUsers :id_token="this.auth.id_token" v-if="page == 'allusers'"/>
         <Loading v-if="loading"/>
@@ -18,13 +19,12 @@
 </template>
 
 <script>
-
-import axios from 'axios'
+import { eventBus } from './main';
+import axios from 'axios';
 
 export default {
   name: 'app',
   components: {
-    HomeCalendar: () => import("./components/HomeCalendar.vue"),
     NavBar: () => import("./components/NavBar.vue"),
     UserProfile: () => import("./components/UserProfile.vue"),
     AllUsers: () => import("./components/AllUsers.vue")
@@ -40,6 +40,11 @@ export default {
       showAlert: false,
       windowWidth: 0
     }
+  },
+  created() {
+    eventBus.$on('authenticated', (auth) => {
+      this.auth = auth;
+    });
   },
   methods: {
     signOut() {
@@ -92,7 +97,7 @@ export default {
   html {
     --main: #4facff;
     --lightmain: #d1e9ff;
-    --secondary: #002766;
+    --secondary: #343e4f;
     --accent: #bc2c00;
     --bottom: #fff9f2;
     --highlight: #afddda;

@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="topnav" :class="{responsive: makeReactive}">
       <a href="#" class="brand"><strong>Amazing App</strong></a>
-      <a href="#" :class="{active: page=='home'}" @click="setPage('home')">Home</a>
+      <router-link :class="{active: page=='home'}" @click="setPage('home')" to="/">Home</router-link>
       <a href="#" v-if="authenticated" :class="{active: page=='mystuff'}">My Stuff</a>
       <a href="#" class="disabled" v-if="!authenticated">My Stuff</a>
       <a href="#" v-if="authenticated" @click="setPage('allusers')" :class="{active: page=='allusers'}">All Users</a>
