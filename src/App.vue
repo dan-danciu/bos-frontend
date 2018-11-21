@@ -10,8 +10,8 @@
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
-        <UserProfile :id_token="this.auth.id_token" :profile="profile" v-if="page == 'profile'"/>
-        <AllUsers :id_token="this.auth.id_token" v-if="page == 'allusers'"/>
+        <UserProfile :id_token="this.id_token" :profile="profile" v-if="page == 'profile'"/>
+        <AllUsers :id_token="this.id_token" v-if="page == 'allusers'"/>
         <Loading v-if="loading"/>
       </div>
     </div>
@@ -62,7 +62,7 @@ export default {
       axios
         .get('https://hzyo7y0ukj.execute-api.eu-west-1.amazonaws.com/dev/auth', {
           headers: {
-            "Authorization": this.auth.id_token
+            "Authorization": this.id_token
           }
         })
         .then(response => {
