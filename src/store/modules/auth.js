@@ -3,7 +3,7 @@ const state = {
   profile: {},
   id_token: '',
   auth2: null
-};
+}
 
 const getters = {
   userProfile: state => {
@@ -15,22 +15,22 @@ const getters = {
   idToken: state => {
     return state.id_token
   }
-};
+}
 
 const mutations = {
-  changeProfile (state, {payload}) {
-    state.profile.name = payload.name
-    state.profile.email = payload.email
-    state.profile.image = payload.image
-    state.profile.user_id = payload.user_id
+  changeProfile (state, data) {
+    state.profile.name = data.name
+    state.profile.email = data.email
+    state.profile.image = data.image
+    state.profile.user_id = data.user_id
   },
-  changeToken (state, {payload}) {
-    state.id_token = payload
+  changeToken (state, token) {
+    state.id_token = token
   },
-  auth2Object (state, {auth2}) {
+  auth2Object (state, auth2) {
     state.auth2 = auth2
   }
-};
+}
 
 const actions = {
   updateProfile ({ commit }, payload) {
@@ -42,7 +42,7 @@ const actions = {
   createAuth2 ({ commit }, payload) {
     commit('auth2Object', payload)
   }
-};
+}
 
 export default {
   namespaced: true,
