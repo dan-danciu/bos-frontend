@@ -45,18 +45,11 @@ export default {
             vm.token = googleUser.getAuthResponse().id_token;
             //vm.$emit('authenticated', {'id_token':vm.id_token, 'auth':vm.auth2});
             //eventBus.$emit('authenticated', {'id_token':vm.id_token, 'auth2':vm.auth2});
+            vm.$store.dispatch('auth/setToken', vm.token);
             //vm.authenticate();
           }, function(error) {
             alert(JSON.stringify(error, null, 2));
           });
-    }
-  },
-  watch: {
-    token: function() {
-      this.setToken('1234abc');
-    },
-    auth2: function() {
-      this.createAuth2(this.auth2);
     }
   }
 }

@@ -18,13 +18,13 @@ const getters = {
 };
 
 const mutations = {
-  updateProfile (state, {payload}) {
+  changeProfile (state, {payload}) {
     state.profile.name = payload.name
     state.profile.email = payload.email
     state.profile.image = payload.image
     state.profile.user_id = payload.user_id
   },
-  setToken (state, {payload}) {
+  changeToken (state, {payload}) {
     state.id_token = payload
   },
   auth2Object (state, {auth2}) {
@@ -34,10 +34,10 @@ const mutations = {
 
 const actions = {
   updateProfile ({ commit }, payload) {
-    commit('updateProfile', payload)
+    commit('changeProfile', payload)
   },
   setToken ({ commit }, payload) {
-    commit('setToken', payload)
+    commit('changeToken', payload)
   },
   createAuth2 ({ commit }, payload) {
     commit('auth2Object', payload)
