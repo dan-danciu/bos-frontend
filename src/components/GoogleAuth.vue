@@ -16,7 +16,8 @@ import { mapActions } from 'vuex'
 export default {
   data() {
     return {
-      auth2: null
+      auth2: null,
+      token: ''
     }
   },
   mounted() {
@@ -38,20 +39,24 @@ export default {
       'createAuth2'
     ]),
     attachSignin(element) {
-      //let vm = this;
-      let doToken = this.setToken();
-      //let doAuth2 = this.createAuth2();
+      let vm = this;
       this.auth2.attachClickHandler(element, {},
           function(googleUser) {
-            let id_token = googleUser.getAuthResponse().id_token;
+            vm.token = googleUser.getAuthResponse().id_token;
             //vm.$emit('authenticated', {'id_token':vm.id_token, 'auth':vm.auth2});
             //eventBus.$emit('authenticated', {'id_token':vm.id_token, 'auth2':vm.auth2});
-            doToken(id_token);
-            //doAuth2(vm.auth2);
             //vm.authenticate();
           }, function(error) {
             alert(JSON.stringify(error, null, 2));
           });
+    }
+  },
+  watch: {
+    token: function() {
+      this.setToken(this.token);
+    },
+    auth2: function() {
+      this.createAuth2(this.auth2);
     }
   }
 }
