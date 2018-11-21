@@ -11,12 +11,9 @@
 </template>
 
 <script>
-import { eventBus } from '../main';
+import { mapActions } from 'vuex'
 
 export default {
-  props: {
-    authenticate: Function
-  },
   data() {
     return {
       auth2: null,
@@ -37,13 +34,19 @@ export default {
     });
   },
   methods: {
+    ...mapActions ('auth', [
+      'setToken',
+      'createAuth2'
+    ]),
     attachSignin(element) {
       var vm = this;
       this.auth2.attachClickHandler(element, {},
           function(googleUser) {
             vm.id_token = googleUser.getAuthResponse().id_token;
             //vm.$emit('authenticated', {'id_token':vm.id_token, 'auth':vm.auth2});
-            eventBus.$emit('authenticated', {'id_token':vm.id_token, 'auth':vm.auth2});
+            //eventBus.$emit('authenticated', {'id_token':vm.id_token, 'auth2':vm.auth2});
+            this.setToken(vm.id_token);
+            this.createAuth2(vm.auth2);
             //vm.authenticate();
           }, function(error) {
             alert(JSON.stringify(error, null, 2));

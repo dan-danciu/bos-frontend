@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import { routes } from './routes'
+import { store } from './store/index'
 
 import App from './App.vue'
 import Unsupported from './Unsupported.vue'
 
-export const eventBus = new Vue();
 
 Vue.use(VueRouter);
 
@@ -56,6 +56,7 @@ switch (browser && browser.name) {
 
   default:
     window.app = new Vue({
+      store,
       router,
       render: h => h(App)
     }).$mount('#app')

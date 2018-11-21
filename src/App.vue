@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { eventBus } from './main';
+import { mapGetters, mapActions } from 'vuex';
 import axios from 'axios';
 
 export default {
@@ -31,9 +31,6 @@ export default {
   },
   data: function() {
     return {
-      auth: null,
-      profile: {},
-      authenticated: false,
       page: 'login',
       loading: false,
       message: '',
@@ -41,13 +38,17 @@ export default {
       windowWidth: 0
     }
   },
-  created() {
-    eventBus.$on('authenticated', (auth) => {
-      this.auth = auth;
-      this.authenticate();
-    });
+  computed: {
+    ...mapGetters('auth', {
+      profile: 'userProfile',
+      authenticated: 'isAuthenticated',
+      id_token: 'idToken'
+    })
   },
   methods: {
+    ...mapActions('auth', [
+      'updateProfile'
+    ]),
     signOut() {
       var vm = this;
       this.auth.auth2.signOut().then(function () {
@@ -65,10 +66,7 @@ export default {
           }
         })
         .then(response => {
-          this.profile.name = response.data.name;
-          this.profile.email = response.data.email;
-          this.profile.image = response.data.image;
-          this.profile.user_id = response.data.user_id;
+          this.updateProfile(response.data);
           this.message = this.profile.name + " - authenticated successfully!";
           this.authenticated = true;
           this.showAlert = true;
