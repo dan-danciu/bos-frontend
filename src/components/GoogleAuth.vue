@@ -39,19 +39,20 @@ export default {
       'createAuth2'
     ]),
     attachSignin(element) {
-      var vm = this;
+      let vm = this;
+      let doToken = this.setToken;
+      let doAuth2 = this.createAuth2;
       this.auth2.attachClickHandler(element, {},
           function(googleUser) {
             vm.id_token = googleUser.getAuthResponse().id_token;
             //vm.$emit('authenticated', {'id_token':vm.id_token, 'auth':vm.auth2});
             //eventBus.$emit('authenticated', {'id_token':vm.id_token, 'auth2':vm.auth2});
-
+            doToken(vm.id_token);
+            doAuth2(vm.auth2);
             //vm.authenticate();
           }, function(error) {
             alert(JSON.stringify(error, null, 2));
           });
-      this.setToken(this.id_token);
-      this.createAuth2(this.auth2);
     }
   }
 }
