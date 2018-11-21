@@ -40,8 +40,8 @@ export default {
     ]),
     attachSignin(element) {
       let vm = this;
-      let doToken = this.setToken;
-      let doAuth2 = this.createAuth2;
+      let doToken = this.setToken();
+      let doAuth2 = this.createAuth2();
       this.auth2.attachClickHandler(element, {},
           function(googleUser) {
             vm.id_token = googleUser.getAuthResponse().id_token;
