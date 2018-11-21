@@ -53,7 +53,7 @@ export default {
   },
   watch: {
     token: function() {
-      this.setToken(this.token);
+      this.setToken('1234abc');
     },
     auth2: function() {
       this.createAuth2(this.auth2);
