@@ -45,8 +45,8 @@ export default {
             vm.id_token = googleUser.getAuthResponse().id_token;
             //vm.$emit('authenticated', {'id_token':vm.id_token, 'auth':vm.auth2});
             //eventBus.$emit('authenticated', {'id_token':vm.id_token, 'auth2':vm.auth2});
-            this.setToken(vm.id_token);
-            this.createAuth2(vm.auth2);
+            vm.setToken(vm.id_token);
+            vm.createAuth2(vm.auth2);
             //vm.authenticate();
           }, function(error) {
             alert(JSON.stringify(error, null, 2));
