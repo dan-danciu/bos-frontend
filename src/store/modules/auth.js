@@ -2,7 +2,7 @@ import axios from 'axios'
 import { router } from '../../router'
 
 const state = {
-  profile: {},
+  profile: null,
   id_token: null,
   auth2: null
 }
