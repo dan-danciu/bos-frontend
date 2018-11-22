@@ -15,17 +15,27 @@
 
 <script>
 import axios from 'axios'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  props: {
-    id_token: String,
-    profile: Object
-  },
   data: function() {
     return {
       message: '',
       showAlert: false
     }
+  },
+  computed: {
+    ...mapGetters('auth', {
+      profile: 'userProfile',
+      authenticated: 'isAuthenticated',
+      id_token: 'idToken',
+      auth2: 'auth2'
+    })
+  },
+  methods: {
+    ...mapActions('auth', [
+      'updateProfile'
+    ]),
   },
   mounted() {
     var vm = this;
@@ -36,14 +46,11 @@ export default {
         }
       })
       .then(response => {
-        vm.profile.name = response.data.name;
-        vm.profile.email = response.data.email;
-        vm.profile.image = response.data.image;
-        vm.profile.user_id = response.data.user_id;
+        vm.updateProfile(response.data);
       })
       .catch(error => {
-        this.message = error;
-        this.showAlert = true;
+        vm.message = error;
+        vm.showAlert = true;
     });
   }
 }

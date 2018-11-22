@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 
 export default {
   data() {
@@ -34,22 +33,19 @@ export default {
     });
   },
   methods: {
-    ...mapActions ('auth', [
-      'setToken',
-      'createAuth2'
-    ]),
     attachSignin(element) {
       let vm = this;
       this.auth2.attachClickHandler(element, {},
           function(googleUser) {
-            vm.token = googleUser.getAuthResponse().id_token;
+            vm.token = googleUser.getAuthResponse().id_token
             //vm.$emit('authenticated', {'id_token':vm.id_token, 'auth':vm.auth2});
             //eventBus.$emit('authenticated', {'id_token':vm.id_token, 'auth2':vm.auth2});
-            vm.$store.dispatch('auth/setToken', vm.token);
+            vm.$store.dispatch('auth/setToken', vm.token)
+            vm.$store.dispatch('auth/createAuth2', vm.auth2)
             //vm.authenticate();
           }, function(error) {
-            alert(JSON.stringify(error, null, 2));
-          });
+            alert(JSON.stringify(error, null, 2))
+          })
     }
   }
 }

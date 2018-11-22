@@ -10,7 +10,6 @@
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
-        <UserProfile :id_token="this.id_token" :profile="profile" v-if="page == 'profile'"/>
         <AllUsers :id_token="this.id_token" v-if="page == 'allusers'"/>
         <Loading v-if="loading"/>
       </div>
@@ -26,7 +25,6 @@ export default {
   name: 'app',
   components: {
     NavBar: () => import("./components/NavBar.vue"),
-    UserProfile: () => import("./components/UserProfile.vue"),
     AllUsers: () => import("./components/AllUsers.vue")
   },
   data: function() {
@@ -42,7 +40,8 @@ export default {
     ...mapGetters('auth', {
       profile: 'userProfile',
       authenticated: 'isAuthenticated',
-      id_token: 'idToken'
+      id_token: 'idToken',
+      auth2: 'auth2'
     })
   },
   methods: {
@@ -50,11 +49,8 @@ export default {
       'updateProfile'
     ]),
     signOut() {
-      var vm = this;
-      this.auth.auth2.signOut().then(function () {
-        vm.profile.user_id = '';
-        vm.authenticated = false;
-        vm.page = 'login';
+      this.auth2.signOut().then(function () {
+
       });
     },
     authenticate() {
