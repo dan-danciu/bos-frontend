@@ -37,7 +37,7 @@ export default {
   created() {
     let vm = this
     axios
-      .get('https://hzyo7y0ukj.execute-api.eu-west-1.amazonaws.com/dev/' + this.profile.user_id, {
+      .get('https://hzyo7y0ukj.execute-api.eu-west-1.amazonaws.com/dev/' + this.user.user_id, {
         headers: {
           "Authorization": this.id_token
         }

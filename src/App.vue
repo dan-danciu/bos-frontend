@@ -62,7 +62,6 @@ export default {
         .then(response => {
           this.updateProfile(response.data)
           this.message = this.profile.name + " - authenticated successfully!"
-          this.authenticated = true
           this.showAlert = true
           this.loading = false
           this.page = 'home'
