@@ -53,6 +53,7 @@ export default {
     },
     authenticate() {
       this.loading = true
+      let vm = this
       axios
         .get('https://hzyo7y0ukj.execute-api.eu-west-1.amazonaws.com/dev/auth', {
           headers: {
@@ -60,11 +61,11 @@ export default {
           }
         })
         .then(response => {
-          this.updateProfile(response.data)
-          this.message = this.profile.name + " - authenticated successfully!"
-          this.showAlert = true
-          this.loading = false
-          this.page = 'home'
+          vm.updateProfile(response.data)
+          vm.message = this.profile.name + " - authenticated successfully!"
+          vm.showAlert = true
+          vm.loading = false
+          vm.page = 'home'
         })
     }
   }
