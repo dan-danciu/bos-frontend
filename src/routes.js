@@ -1,6 +1,6 @@
 const Home = () => import('./components/HomeCalendar.vue')
 const GoogleAuth = () => import('./components/GoogleAuth.vue')
-const UserProfile = () => import("./components/UserProfile.vue")
+const UserProfile = () => import('./components/UserProfile.vue')
 
 export const routes = [
   { path: '',

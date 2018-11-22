@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-import axios from 'axios';
+import { mapGetters, mapActions } from 'vuex'
+import axios from 'axios'
 
 export default {
   name: 'app',
@@ -54,7 +54,7 @@ export default {
       });
     },
     authenticate() {
-      this.loading = true;
+      this.loading = true
       axios
         .get('https://hzyo7y0ukj.execute-api.eu-west-1.amazonaws.com/dev/auth', {
           headers: {
@@ -62,12 +62,12 @@ export default {
           }
         })
         .then(response => {
-          this.updateProfile(response.data);
-          this.message = this.profile.name + " - authenticated successfully!";
-          this.authenticated = true;
-          this.showAlert = true;
-          this.loading = false;
-          this.page = 'home';
+          this.updateProfile(response.data)
+          this.message = this.profile.name + " - authenticated successfully!"
+          this.authenticated = true
+          this.showAlert = true
+          this.loading = false
+          this.page = 'home'
         })
     }
   }

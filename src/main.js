@@ -7,7 +7,7 @@ import App from './App.vue'
 import Unsupported from './Unsupported.vue'
 
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes,
@@ -15,8 +15,8 @@ const router = new VueRouter({
 })
 
 
-Vue.component('google-auth', () => import("./components/GoogleAuth.vue"));
-Vue.component('Loading', () => import("./components/Loading.vue"));
+Vue.component('google-auth', () => import("./components/GoogleAuth.vue"))
+Vue.component('Loading', () => import("./components/Loading.vue"))
 
 Vue.config.productionTip = true
 
@@ -40,11 +40,11 @@ Vue.mixin({
   beforeDestroy() {
     window.removeEventListener('resize', this.getWindowWidth);
   }
-});
+})
 
 
-const { detect } = require('detect-browser');
-const browser = detect();
+const { detect } = require('detect-browser')
+const browser = detect()
 
 // handle the case where we don't detect the browser
 switch (browser && browser.name) {
@@ -52,7 +52,7 @@ switch (browser && browser.name) {
     window.app = new Vue({
       render: h => h(Unsupported)
     }).$mount('#app')
-    break;
+    break
 
   default:
     window.app = new Vue({

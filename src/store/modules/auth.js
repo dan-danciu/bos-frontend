@@ -21,7 +21,7 @@ const getters = {
 }
 
 const mutations = {
-  changeProfile (state, data) {
+  changeProfile (state, { data }) {
     state.profile.name = data.name
     state.profile.email = data.email
     state.profile.image = data.image
