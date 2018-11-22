@@ -9,7 +9,7 @@ export const routes = [
     name: 'home',
     meta: { requiresAuth: true },
     beforeEnter (to, from, next) {
-      if (store.state.id_token) {
+      if (store.state.auth.id_token) {
         next()
       } else {
         next('/login')
