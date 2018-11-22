@@ -57,6 +57,7 @@ const actions = {
           image: response.data.image,
           user_id: response.data.user_id
         })
+        router.push('home')
     })
   },
   signOut ({ commit, state }) {
