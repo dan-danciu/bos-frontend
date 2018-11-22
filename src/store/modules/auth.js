@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { router } from '../../router'
 
 const state = {
   profile: {},
@@ -61,6 +62,7 @@ const actions = {
   signOut ({ commit, state }) {
     state.auth2.signOut().then(function () {
       commit('clearAuth')
+      router.push('login')
     });
   },
   setToken ({ commit }, payload) {

@@ -1,6 +1,5 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import { routes } from './routes'
+import { router } from './router'
 import { store } from './store/index'
 import axios from 'axios'
 
@@ -8,13 +7,6 @@ import App from './App.vue'
 import Unsupported from './Unsupported.vue'
 
 axios.defaults.baseURL = 'https://hzyo7y0ukj.execute-api.eu-west-1.amazonaws.com/dev'
-
-Vue.use(VueRouter)
-
-const router = new VueRouter({
-  routes,
-  mode: 'history'
-})
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
