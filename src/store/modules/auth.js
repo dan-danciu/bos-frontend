@@ -57,13 +57,13 @@ const actions = {
           image: response.data.image,
           user_id: response.data.user_id
         })
-        router.push('home')
+        router.push({name: 'home'})
     })
   },
   signOut ({ commit, state }) {
     state.auth2.signOut().then(function () {
       commit('clearAuth')
-      router.push('login')
+      router.push({name: 'login'})
     });
   },
   setToken ({ commit }, payload) {
