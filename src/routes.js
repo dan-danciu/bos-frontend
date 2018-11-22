@@ -22,5 +22,8 @@ export const routes = [
     component: AllUsers,
     name: 'allusers',
     meta: { requiresAuth: true }
+  },
+  { path: '*',
+    redirect: {name: 'home'}
   }
 ]

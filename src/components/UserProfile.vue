@@ -2,7 +2,7 @@
   <div id="userprofile">
     <div class="card">
       <div class="cardtop">
-        <img :src="this.user.image" alt="">
+        <img :src="user.image" alt="">
       </div>
       <div class="container">
         <h4><strong>{{ user.name }}</strong></h4>
