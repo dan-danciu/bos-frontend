@@ -15,20 +15,10 @@
 
 <script>
 
-import { mapGetters } from 'vuex'
-
 export default {
-  data: function() {
-    return {
-      message: '',
-      showAlert: false
-    }
-  },
   computed: {
-    ...mapGetters('auth', {
-      user: 'userProfile',
-      id_token: 'idToken'
-    })
+      user() { return this.$store.state.auth.userProfile },
+      id_token() { return this.$store.state.auth.idToken }
   }
 }
 </script>
