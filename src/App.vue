@@ -61,7 +61,7 @@ export default {
           }
         })
         .then(response => {
-          vm.updateProfile(response.data)
+          vm.$store.dispatch('auth/updateProfile', response.data)
           vm.message = this.profile.name + " - authenticated successfully!"
           vm.showAlert = true
           vm.loading = false
