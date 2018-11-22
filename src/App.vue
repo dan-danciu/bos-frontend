@@ -8,7 +8,7 @@
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
-        <AllUsers :id_token="this.id_token" v-if="page == 'allusers'"/>
+        <AllUsers :id_token="this.id_token" v-if="page === 'allusers'"/>
         <Loading v-if="loading"/>
       </div>
     </div>
@@ -21,8 +21,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'app',
   components: {
-    NavBar: () => import("./components/NavBar.vue"),
-    AllUsers: () => import("./components/AllUsers.vue")
+    NavBar: () => import("./components/NavBar.vue")
   },
   data: function() {
     return {
