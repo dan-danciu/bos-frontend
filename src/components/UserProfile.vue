@@ -6,7 +6,7 @@
     </div>
     <div class="card">
       <div class="cardtop">
-        <img :src="profile.image" alt="">
+        <img :src="this.profile.image" alt="">
       </div>
       <div class="container">
         <h4><strong>{{ profile.name }}</strong></h4>
@@ -37,10 +37,9 @@ export default {
   methods: {
     ...mapActions('auth', [
       'updateProfile'
-    ]),
+    ])
   },
   created() {
-    var vm = this;
     axios
       .get('https://hzyo7y0ukj.execute-api.eu-west-1.amazonaws.com/dev/' + this.profile.user_id, {
         headers: {
@@ -48,11 +47,11 @@ export default {
         }
       })
       .then(response => {
-        this.updateProfile(response.data);
+        this.updateProfile(response.data)
       })
       .catch(error => {
-        vm.message = error;
-        vm.showAlert = true;
+        this.message = error;
+        this.showAlert = true;
     });
   }
 }
