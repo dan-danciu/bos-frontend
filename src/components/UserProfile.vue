@@ -19,7 +19,7 @@
 
 <script>
 import axios from 'axios'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   data: function() {
@@ -34,12 +34,8 @@ export default {
       id_token: 'idToken'
     })
   },
-  methods: {
-    ...mapActions('auth', [
-      'updateProfile'
-    ])
-  },
   created() {
+    let vm = this
     axios
       .get('https://hzyo7y0ukj.execute-api.eu-west-1.amazonaws.com/dev/' + this.profile.user_id, {
         headers: {
@@ -47,7 +43,7 @@ export default {
         }
       })
       .then(response => {
-        this.updateProfile(response.data)
+        vm.$store.dispatch('auth/updateProfile', response.data)
       })
       .catch(error => {
         this.message = error;
