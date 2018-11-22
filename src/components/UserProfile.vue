@@ -1,5 +1,9 @@
 <template lang="html">
   <div id="userprofile">
+    <div class="">
+      something aint right:
+      {{ profile }}
+    </div>
     <div class="card">
       <div class="cardtop">
         <img :src="profile.image" alt="">
