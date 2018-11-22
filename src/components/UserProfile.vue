@@ -29,7 +29,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
+    ...mapGetters('auth', {
       profile: 'userProfile',
       id_token: 'idToken'
     })
