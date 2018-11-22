@@ -3,7 +3,6 @@ import axios from 'axios'
 const state = {
   profile: {},
   id_token: null,
-  user_id: null,
   auth2: null
 }
 
@@ -19,9 +18,6 @@ const getters = {
   },
   auth2: state => {
     return state.auth2
-  },
-  userId: state => {
-    return state.user_id
   }
 }
 
@@ -37,6 +33,11 @@ const mutations = {
   },
   auth2Object (state, auth2) {
     state.auth2 = auth2
+  },
+  clearAuth (state) {
+    state.profile = {}
+    state.id_token = null
+    state.auth2 = null
   }
 }
 
@@ -56,6 +57,11 @@ const actions = {
           user_id: response.data.user_id
         })
     })
+  },
+  signOut ({ commit, state }) {
+    state.auth2.signOut().then(function () {
+      commit('clearAuth')
+    });
   },
   setToken ({ commit }, payload) {
     commit('changeToken', payload)

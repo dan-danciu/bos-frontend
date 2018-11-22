@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container">
 
-    <NavBar :signOut="signOut" :authenticated="authenticated" @pageChange="page = $event"/><br>
+    <NavBar @pageChange="page = $event"/><br>
     <div id="main" class="container">
       <br><br>
       <div class="card">
@@ -44,12 +44,7 @@ export default {
   methods: {
     ...mapActions('auth', [
       'updateProfile'
-    ]),
-    signOut() {
-      this.auth2.signOut().then(function () {
-
-      });
-    }
+    ])
   }
 }
 </script>

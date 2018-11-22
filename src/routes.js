@@ -1,12 +1,20 @@
 const Home = () => import('./components/HomeCalendar.vue')
 const GoogleAuth = () => import('./components/GoogleAuth.vue')
 const UserProfile = () => import('./components/UserProfile.vue')
+import { store } from './store/index'
 
 export const routes = [
   { path: '',
     component: Home,
     name: 'home',
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: true },
+    beforeEnter (to, from, next) {
+      if (store.state.isAuthenticated) {
+        next()
+      } else {
+        next('/login')
+      }
+    }
   },
   { path: '/login',
     component: GoogleAuth,

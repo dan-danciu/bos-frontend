@@ -18,22 +18,28 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  props: {
-    signOut: Function,
-    authenticated: Boolean
-  },
   data: function() {
     return {
       makeReactive: false,
       page: 'home'
     }
   },
+  computed: {
+    ...mapGetters('auth', {
+      authenticated: 'isAuthenticated'
+    })
+  },
   methods: {
     setPage(page) {
       this.makeReactive = false;
       this.page = page;
       this.$emit('pageChange', page);
+    },
+    signOut() {
+      this.$store.dispatch('auth/signOut')
     }
   }
 }
