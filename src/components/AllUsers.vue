@@ -11,6 +11,7 @@
 
 <script>
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 
 export default {
   props: {
@@ -24,6 +25,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('auth', {
+      id_token: 'idToken'
+    }),
     ulStyle: function() {
       return {
         columns: this.columns,

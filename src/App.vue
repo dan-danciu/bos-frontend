@@ -8,7 +8,6 @@
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
-        <AllUsers :id_token="this.id_token" v-if="page === 'allusers'"/>
         <Loading v-if="loading"/>
       </div>
     </div>
