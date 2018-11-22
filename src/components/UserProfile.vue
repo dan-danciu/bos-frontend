@@ -1,9 +1,5 @@
 <template lang="html">
   <div id="userprofile">
-    <div class="">
-      something aint right:
-      {{ user }} and {{ id_token }}
-    </div>
     <div class="card">
       <div class="cardtop">
         <img :src="this.user.image" alt="">
