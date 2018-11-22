@@ -17,8 +17,8 @@
 
 export default {
   computed: {
-      user() { return this.$store.state.auth.userProfile },
-      id_token() { return this.$store.state.auth.idToken }
+      user() { return this.$store.state.auth.profile },
+      id_token() { return this.$store.state.auth.id_token }
   }
 }
 </script>
