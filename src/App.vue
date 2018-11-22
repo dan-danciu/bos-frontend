@@ -5,7 +5,7 @@
     <div id="main" class="container">
       <br><br>
       <div class="card">
-        <keep-alive>
+        <keep-alive exclude="user">
           <router-view></router-view>
         </keep-alive>
         <Loading v-if="loading"/>
