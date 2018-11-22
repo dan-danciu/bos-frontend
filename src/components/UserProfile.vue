@@ -2,7 +2,7 @@
   <div id="userprofile">
     <div class="">
       something aint right:
-      {{ profile }}
+      {{ profile }} and {{ id_token }}
     </div>
     <div class="card">
       <div class="cardtop">

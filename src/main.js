@@ -1,7 +1,8 @@
 import Vue from 'vue'
+import { store } from './store/index'
 import VueRouter from 'vue-router'
 import { routes } from './routes'
-import { store } from './store/index'
+
 
 import App from './App.vue'
 import Unsupported from './Unsupported.vue'
