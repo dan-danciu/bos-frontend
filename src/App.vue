@@ -17,7 +17,6 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import axios from 'axios'
 
 export default {
   name: 'app',
@@ -50,23 +49,6 @@ export default {
       this.auth2.signOut().then(function () {
 
       });
-    },
-    authenticate() {
-      this.loading = true
-      let vm = this
-      axios
-        .get('https://hzyo7y0ukj.execute-api.eu-west-1.amazonaws.com/dev/auth', {
-          headers: {
-            "Authorization": this.id_token
-          }
-        })
-        .then(response => {
-          vm.$store.dispatch('auth/updateProfile', response.data)
-          vm.message = this.profile.name + " - authenticated successfully!"
-          vm.showAlert = true
-          vm.loading = false
-          vm.page = 'home'
-        })
     }
   }
 }

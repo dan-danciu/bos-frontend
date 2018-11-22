@@ -1,7 +1,9 @@
+import axios from 'axios'
 
 const state = {
   profile: {},
-  id_token: '',
+  id_token: null,
+  user_id: null,
   auth2: null
 }
 
@@ -10,13 +12,16 @@ const getters = {
     return state.profile
   },
   isAuthenticated: state => {
-    return state.id_token != ''
+    return state.id_token !== null
   },
   idToken: state => {
     return state.id_token
   },
   auth2: state => {
     return state.auth2
+  },
+  userId: state => {
+    return state.user_id
   }
 }
 
@@ -36,8 +41,21 @@ const mutations = {
 }
 
 const actions = {
-  updateProfile ({ commit }, payload) {
-    commit('changeProfile', payload)
+  authenticate ({ commit }, token) {
+    axios
+      .get('/auth', {
+        headers: {
+          "Authorization": token
+        }
+      })
+      .then(response => {
+        commit('changeProfile', {
+          name: response.data.name,
+          email: response.data.email,
+          image: response.data.image,
+          user_id: response.data.user_id
+        })
+    })
   },
   setToken ({ commit }, payload) {
     commit('changeToken', payload)

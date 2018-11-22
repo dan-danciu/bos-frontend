@@ -42,6 +42,7 @@ export default {
             //eventBus.$emit('authenticated', {'id_token':vm.id_token, 'auth2':vm.auth2});
             vm.$store.dispatch('auth/setToken', vm.token)
             vm.$store.dispatch('auth/createAuth2', vm.auth2)
+            vm.$store.dispatch('auth/authenticate', vm.token)
             //vm.authenticate();
           }, function(error) {
             alert(JSON.stringify(error, null, 2))

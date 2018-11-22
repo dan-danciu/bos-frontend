@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+
 import { mapGetters } from 'vuex'
 
 export default {
@@ -33,22 +33,6 @@ export default {
       user: 'userProfile',
       id_token: 'idToken'
     })
-  },
-  created() {
-    let vm = this
-    axios
-      .get('https://hzyo7y0ukj.execute-api.eu-west-1.amazonaws.com/dev/' + this.user.user_id, {
-        headers: {
-          "Authorization": this.id_token
-        }
-      })
-      .then(response => {
-        vm.$store.dispatch('auth/updateProfile', response.data)
-      })
-      .catch(error => {
-        this.message = error;
-        this.showAlert = true;
-    });
   }
 }
 </script>
