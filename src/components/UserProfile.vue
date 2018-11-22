@@ -35,7 +35,7 @@ export default {
       'updateProfile'
     ]),
   },
-  mounted() {
+  created() {
     var vm = this;
     axios
       .get('https://hzyo7y0ukj.execute-api.eu-west-1.amazonaws.com/dev/' + this.profile.user_id, {
@@ -44,7 +44,7 @@ export default {
         }
       })
       .then(response => {
-        vm.updateProfile(response.data);
+        this.updateProfile(response.data);
       })
       .catch(error => {
         vm.message = error;
