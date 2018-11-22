@@ -2,15 +2,15 @@
   <div id="userprofile">
     <div class="">
       something aint right:
-      {{ profile }} and {{ id_token }}
+      {{ user }} and {{ id_token }}
     </div>
     <div class="card">
       <div class="cardtop">
-        <img :src="this.profile.image" alt="">
+        <img :src="this.user.image" alt="">
       </div>
       <div class="container">
-        <h4><strong>{{ profile.name }}</strong></h4>
-        <p>{{ profile.email }}</p>
+        <h4><strong>{{ user.name }}</strong></h4>
+        <p>{{ user.email }}</p>
       </div>
     </div>
 
@@ -30,7 +30,7 @@ export default {
   },
   computed: {
     ...mapGetters('auth', {
-      profile: 'userProfile',
+      user: 'userProfile',
       id_token: 'idToken'
     })
   },

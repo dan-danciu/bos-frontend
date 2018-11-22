@@ -3,8 +3,6 @@
 
     <NavBar :signOut="signOut" :authenticated="authenticated" @pageChange="page = $event"/><br>
     <div id="main" class="container">
-
-
       <br><br>
       <div class="card">
         <keep-alive>
