@@ -8,17 +8,8 @@ const state = {
 }
 
 const getters = {
-  userProfile: state => {
-    return state.profile
-  },
   isAuthenticated: state => {
     return state.id_token !== null
-  },
-  idToken: state => {
-    return state.id_token
-  },
-  auth2: state => {
-    return state.auth2
   }
 }
 

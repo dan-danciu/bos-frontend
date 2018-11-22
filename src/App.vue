@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'app',
@@ -32,11 +32,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('auth', {
-      profile: 'userProfile',
-      authenticated: 'isAuthenticated',
-      id_token: 'idToken',
+    ...mapState('auth', {
+      profile: 'profile',
+      id_token: 'id_token',
       auth2: 'auth2'
+    }),
+    ...mapGetters('auth', {
+      authenticated: 'isAuthenticated'
     })
   },
   methods: {

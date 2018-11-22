@@ -11,7 +11,7 @@
 
 <script>
 import axios from 'axios'
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   props: {
@@ -25,8 +25,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('auth', {
-      id_token: 'idToken'
+    ...mapState('auth', {
+      id_token: 'id_token'
     }),
     ulStyle: function() {
       return {

@@ -14,11 +14,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 
 export default {
   computed: {
-      user() { return this.$store.state.auth.profile },
-      id_token() { return this.$store.state.auth.id_token }
+      ...mapState('auth', {
+        user: 'profile',
+        id_token: 'id_token'
+      })
   }
 }
 </script>
