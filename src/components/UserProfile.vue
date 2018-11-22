@@ -27,9 +27,7 @@ export default {
   computed: {
     ...mapGetters('auth', {
       profile: 'userProfile',
-      authenticated: 'isAuthenticated',
-      id_token: 'idToken',
-      auth2: 'auth2'
+      id_token: 'idToken'
     })
   },
   methods: {

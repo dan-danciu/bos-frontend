@@ -9,7 +9,7 @@
       <div class="dropdown" v-if="authenticated">
         <button href="#" class="dropbtn">User&#9662;</button>
         <div class="dropdown-content">
-          <router-link @click="setPage('profile')">Profile</router-link>
+          <router-link @click="setPage('profile')" to="user">Profile</router-link>
           <a href="#" @click="signOut">Signout</a>
         </div>
       </div>
