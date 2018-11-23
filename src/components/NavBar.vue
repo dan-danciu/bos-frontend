@@ -2,8 +2,8 @@
     <div class="topnav" :class="{responsive: makeReactive}">
       <a href="#" class="brand"><strong>Amazing App</strong></a>
       <router-link :class="{active: page==='home'}" @click="setPage('home')" to="/">Home</router-link>
-      <a href="#" v-if="authenticated" :class="{active: page==='mystuff'}">My Stuff</a>
-      <a href="#" class="disabled" v-if="!authenticated">My Stuff</a>
+      <a href="#" v-if="authenticated" :class="{active: page==='mystuff'}">My Entries</a>
+      <a href="#" class="disabled" v-if="!authenticated">My Entries</a>
       <router-link v-if="authenticated" @click="setPage('allusers')" :class="{active: page==='allusers'}" to="allusers">All Users</router-link>
       <a href="#" class="disabled" v-else>All Users</a>
       <div class="dropdown" v-if="authenticated">

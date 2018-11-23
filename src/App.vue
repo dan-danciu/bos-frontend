@@ -5,7 +5,7 @@
     <div id="main" class="container">
       <br><br>
       <div class="card">
-        <keep-alive exclude="user">
+        <keep-alive>
           <router-view></router-view>
         </keep-alive>
         <Loading v-if="loading"/>
@@ -24,10 +24,6 @@ export default {
   },
   data: function() {
     return {
-      page: 'login',
-      loading: false,
-      message: '',
-      showAlert: false,
       windowWidth: 0
     }
   },
