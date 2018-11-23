@@ -38,7 +38,7 @@ export default {
   mounted() {
     this.loading = true;
     axios
-      .get('https://hzyo7y0ukj.execute-api.eu-west-1.amazonaws.com/dev/all_users', {
+      .get('/all_users', {
         headers: {
           "Authorization": this.id_token
         }

@@ -2,7 +2,12 @@ import axios from 'axios'
 import { router } from '../../router'
 
 const state = {
-  profile: {},
+  profile: {
+    name: 'John Doe',
+    email: 'john.doe@webapp.link',
+    image: '',
+    user_id: '12345'
+  },
   id_token: null,
   auth2: null
 }
