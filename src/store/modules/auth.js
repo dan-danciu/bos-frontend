@@ -20,10 +20,13 @@ const getters = {
 
 const mutations = {
   changeProfile (state, data) {
-    state.profile.name = data.name
-    state.profile.email = data.email
-    state.profile.image = data.image
-    state.profile.user_id = data.user_id
+    state.profile = {
+      ...state.profile,
+      name: data.name,
+      email: data.email,
+      image: data.image,
+      user_id: data.user_id
+    }
   },
   changeToken (state, token) {
     state.id_token = token
