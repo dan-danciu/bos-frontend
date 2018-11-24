@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container">
 
-    <NavBar @pageChange="page = $event"/><br>
+    <NavBar/><br>
     <div id="main" class="container">
       <br><br>
       <div class="card">
@@ -15,8 +15,6 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex'
-
 export default {
   name: 'app',
   components: {
@@ -27,20 +25,8 @@ export default {
       windowWidth: 0
     }
   },
-  computed: {
-    ...mapState('auth', {
-      profile: 'profile',
-      id_token: 'id_token',
-      auth2: 'auth2'
-    }),
-    ...mapGetters('auth', {
-      authenticated: 'isAuthenticated'
-    })
-  },
-  methods: {
-    ...mapActions('auth', [
-      'updateProfile'
-    ])
+  created() {
+    this.$store.dispatch('auth/tryAutoLogin')
   }
 }
 </script>

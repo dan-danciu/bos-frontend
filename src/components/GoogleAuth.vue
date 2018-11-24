@@ -13,41 +13,8 @@
 <script>
 
 export default {
-  data() {
-    return {
-      auth2: null,
-      token: ''
-    }
-  },
   mounted() {
-    let vm = this;
-    window.gapi.load('auth2', function(){
-      // Retrieve the singleton for the GoogleAuth library and set up the client.
-      vm.auth2 = window.gapi.auth2.init({
-        client_id: '260183799410-3agediepvbmo0n1j23jk4se5jkgnm382.apps.googleusercontent.com',
-        cookiepolicy: 'single_host_origin',
-        // Request scopes in addition to 'profile' and 'email'
-        //scope: 'additional_scope'
-      });
-      vm.attachSignin(document.getElementById('customBtn'));
-    });
-  },
-  methods: {
-    attachSignin(element) {
-      let vm = this;
-      this.auth2.attachClickHandler(element, {},
-          function(googleUser) {
-            vm.token = googleUser.getAuthResponse().id_token
-            //vm.$emit('authenticated', {'id_token':vm.id_token, 'auth':vm.auth2});
-            //eventBus.$emit('authenticated', {'id_token':vm.id_token, 'auth2':vm.auth2});
-            vm.$store.dispatch('auth/setToken', vm.token)
-            vm.$store.dispatch('auth/createAuth2', vm.auth2)
-            vm.$store.dispatch('auth/authenticate', vm.token)
-            //vm.authenticate();
-          }, function(error) {
-            alert(JSON.stringify(error, null, 2))
-          })
-    }
+    this.$store.dispatch('auth/gAuth', true)
   }
 }
 </script>

@@ -1,15 +1,33 @@
 <template lang="html">
     <div class="topnav" :class="{responsive: makeReactive}">
-      <a href="#" class="brand"><strong>Amazing App</strong></a>
-      <router-link :class="{active: page==='home'}" @click="setPage('home')" to="/">Home</router-link>
-      <a href="#" v-if="authenticated" :class="{active: page==='mystuff'}">My Entries</a>
-      <a href="#" class="disabled" v-if="!authenticated">My Entries</a>
-      <router-link v-if="authenticated" @click="setPage('allusers')" :class="{active: page==='allusers'}" to="allusers">All Users</router-link>
+      <router-link
+      @click.native="setActive('home')"
+      to="/"
+      class="brand">
+        <strong>Amazing App</strong>
+      </router-link>
+      <router-link
+      :class="{active: page==='home'}"
+      @click.native="setActive('home')"
+      to="/">
+        Calendar
+      </router-link>
+      <router-link
+      v-if="authenticated"
+      :class="{active: page==='allusers'}"
+      @click.native="setActive('allusers')"
+      to="allusers">
+        All Users
+      </router-link>
       <a href="#" class="disabled" v-else>All Users</a>
-      <div class="dropdown" v-if="authenticated">
+      <div class="dropdown" v-if="authenticated" :class="{active: page==='user'}">
         <button href="#" class="dropbtn">User&#9662;</button>
         <div class="dropdown-content">
-          <router-link @click="setPage('profile')" to="user">Profile</router-link>
+          <router-link
+          @click.native="setActive('user')"
+          to="user">
+            Profile
+          </router-link>
           <a href="#" @click="signOut">Signout</a>
         </div>
       </div>
@@ -33,10 +51,9 @@ export default {
     })
   },
   methods: {
-    setPage(page) {
-      this.makeReactive = false;
-      this.page = page;
-      this.$emit('pageChange', page);
+    setActive(page) {
+      this.makeReactive = false
+      this.page = page
     },
     signOut() {
       this.$store.dispatch('auth/signOut')
@@ -104,6 +121,7 @@ export default {
     background-color: var(--bottom);
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px #999;
+    font-weight: normal;
     z-index: 1;
 }
 
