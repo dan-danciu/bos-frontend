@@ -11,7 +11,9 @@
         <Loading v-if="loading"/>
       </div>
     </div>
+
   </div>
+
 </template>
 
 <script>

@@ -10,8 +10,10 @@
             <div class="daytext" :class="{weekend: isWeekend}"><strong> {{ day }}</strong><div class="weekday">{{ daysOfWeek[weekDay] }}</div></div>
 
           </div>
-          <div class="addentry">
+          <div class="addentry" id="show-modal" @click="showModal = true">
             <p>Add entry</p> +
+
+
           </div>
           <div class="cardbot users">
             <ul class="userlist">
@@ -34,12 +36,26 @@
       </div>
 
     </div>
+    <addEntry v-if="showModal" @close="showModal = false">
+      <h3 slot="header">Vacation</h3>
+      <div slot="body">
+        <div class="">
+          From: {{ day }}-{{ months[month] }}-{{ year }}
+        </div>
+        <div class="">
+          To: {{ day }}-{{ months[month] }}-{{ year }}
+        </div>
+      </div>
+    </addEntry>
   </div>
 
 </template>
 
 <script>
 export default {
+  components: {
+    addEntry: () => import("./AddEntry.vue")
+  },
   props: {
     date: Date,
     refMonth: Number,
@@ -55,7 +71,23 @@ export default {
       daysOfWeek: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
       weekDay: 0,
       day: 0,
-      month: 0
+      month: 0,
+      year: 0,
+      showModal: false,
+      months: [
+        'january',
+        'february',
+        'march',
+        'april',
+        'may',
+        'june',
+        'july',
+        'august',
+        'september',
+        'october',
+        'november',
+        'december'
+      ]
     }
   },
   created() {
@@ -69,13 +101,17 @@ export default {
     },
     isWeekend: function() {
       return this.weekDay == 0 || this.weekDay == 6
+    },
+    selectedDate: function() {
+      return this.day
     }
   },
   methods: {
     setUp() {
-      this.weekDay = this.date.getDay();
-      this.day = this.date.getDate();
-      this.month = this.date.getMonth();
+      this.weekDay = this.date.getDay()
+      this.day = this.date.getDate()
+      this.month = this.date.getMonth()
+      this.year = this.date.getFullYear()
     }
   }
 }
