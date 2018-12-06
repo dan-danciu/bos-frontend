@@ -6,7 +6,7 @@
       <br><br>
       <div class="card">
         <keep-alive>
-          <router-view></router-view>
+          <router-view v-show="!loading"></router-view>
         </keep-alive>
         <Loading v-if="loading"/>
       </div>
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'app',
   components: {
@@ -24,6 +26,9 @@ export default {
     return {
       windowWidth: 0
     }
+  },
+  computed: {
+    ...mapState('auth', { loading: 'loading'})
   },
   created() {
     this.$store.dispatch('auth/tryAutoLogin')

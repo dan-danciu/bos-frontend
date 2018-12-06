@@ -9,7 +9,8 @@ const state = {
     user_id: '12345'
   },
   id_token: null,
-  auth2: null
+  auth2: null,
+  loading: false
 }
 
 const getters = {
@@ -87,7 +88,8 @@ const actions = {
           alert(JSON.stringify(error, null, 2))
         })
   },
-  authenticate ({ commit }, token) {
+  authenticate ({ commit, state }, token) {
+    state.loading = true
     axios
       .get('/auth', {
         headers: {
@@ -102,6 +104,7 @@ const actions = {
           user_id: response.data.user_id
         })
         router.push({name: 'home'})
+        state.loading = false
     })
   },
   signOut ({ dispatch, state }) {
