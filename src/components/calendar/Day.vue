@@ -36,7 +36,7 @@
       </div>
 
     </div>
-    <addEntry v-if="showModal" @close="showModal = false">
+    <addEntry v-if="showModal" @close="showModal = false" @submit = "submitVacation">
       <h3 slot="header">Vacation</h3>
       <div slot="body">
         <div class="">
@@ -112,6 +112,10 @@ export default {
       this.day = this.date.getDate()
       this.month = this.date.getMonth()
       this.year = this.date.getFullYear()
+    },
+    submitVacation() {
+      console.log('trololo')
+      this.showModal = false
     }
   }
 }

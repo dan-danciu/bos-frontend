@@ -18,13 +18,14 @@
 
           <div class="modal-footer">
             <slot name="footer">
-              default footer
+              <hr>
+              <button class="modal-default-button" @click="$emit('submit')">
+                Ok
+              </button>
               <button class="modal-default-button" @click="$emit('close')">
                 Cancel
               </button>
-              <button class="modal-default-button" @click="$emit('close')">
-                OK
-              </button>
+              <br>
             </slot>
           </div>
         </div>
@@ -57,6 +58,7 @@ export default {
   }
 
   .modal-container {
+    width: 50%;
     margin: 0px auto;
     padding: 20px 30px;
     background-color: #fff;
@@ -76,7 +78,7 @@ export default {
   }
 
   .modal-default-button {
-    float: right;
+    float: center;
   }
 
   /*
