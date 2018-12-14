@@ -3,33 +3,20 @@
     <div class="grid-container" :class="{today: datesEqual}">
       <div class="card caltop">
         <div class="ear1">'</div><div class="ear2">'</div>
+        <div class="daytext" :class="{weekend: isWeekend}"><strong> {{ day }}</strong>
+          <div class="weekday">{{ daysOfWeek[weekDay] }}</div>
+        </div>
       </div>
       <div class="card whole">
+
         <div class="cardtop">
           <div class="daytop">
-            <div class="daytext" :class="{weekend: isWeekend}"><strong> {{ day }}</strong><div class="weekday">{{ daysOfWeek[weekDay] }}</div></div>
 
           </div>
           <div class="addentry" id="show-modal" @click="showModal = true">
             <p>Add entry</p> +
 
 
-          </div>
-          <div class="cardbot users">
-            <ul class="userlist">
-              <li>
-                <div class="round">
-                  SU
-                </div>
-                <div class="longuser">some user</div>
-              </li>
-              <li>
-                <div class="round">
-                  SO
-                </div>
-                <div class="longuser">some other user</div>
-              </li>
-            </ul>
           </div>
 
         </div>
@@ -132,10 +119,6 @@ export default {
   height: 50px;
   border-radius: 5px;
 }
-#day .cardbot {
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
 .round {
   position: relative;
   height: 25px;
@@ -146,12 +129,8 @@ export default {
   text-align: center;
   top: -5px;
 }
-.longuser {
-  display: inline-block;
-  text-align: left;
-}
 .today {
-  color: var(--accent);
+  color: var(--lightmain);
   box-shadow: 0px 0px 20px 7px var(--accent);
   font-weight: bolder;
   z-index: 5;
@@ -159,7 +138,6 @@ export default {
 }
 .today .weekday {
   font-size: 20px;
-  color: var(--accent);
 }
 .outside {
   color: var(--disabled);
@@ -202,7 +180,7 @@ export default {
   left: 80%;
 }
 .caltop {
-  background-image: linear-gradient(var(--main), var(--secondary) 55%);
+  background-image: linear-gradient(var(--lightmain), var(--main) 10%);
   border: 1px solid var(--main);
   height: 30px;
 }
@@ -210,15 +188,10 @@ export default {
   background-image: linear-gradient(var(--accent), var(--main));
 }
 .outside .caltop, .outside .ear1, .outside .ear2 {
-  background-image: linear-gradient(var(--lightmain), var(--shadow) 55%);
+  background-image: linear-gradient(var(--lightmain), var(--shadow) 10%);
 }
 .outside .daytop {
   background-color: #ddd;
-}
-.outside .cardbot {
-  box-shadow: 0 0 0 0;
-  border: 0;
-  background-color: var(--disabled);
 }
 .daytop {
   border-top: 3px solid var(--main);
@@ -226,24 +199,31 @@ export default {
   width: 100%;
 }
 .daytext {
-  font-size: 25px;
+  font-size: 20px;
   position: relative;
   display: inline-block;
-  float: right;
+  top: -25px;
+  color: var(--lightmain);
   z-index: 1;
 }
 .weekday {
-  display: block;
+  display: inline-block;
   bottom: 0px;
   font-size: 15px;
   text-decoration: overline;
-  color: var(--secondary);
+  color: var(--lightmain);
 }
 .weekend {
-  color: var(--main);
+  color: var(--accent);
+}
+.outside .weekend {
+  color: var(--disabled);
+}
+.outside .weekend .weekday{
+  color: var(--disabled);
 }
 .weekend .weekday {
-  color: var(--main);
+  color: var(--accent);
 }
 .addentry{
   display: flex;
@@ -270,22 +250,7 @@ export default {
   box-shadow: inset -7px -7px 15px -10px var(--main);
   cursor: pointer;
 }
-.users {
-  font-size: 12px;
-  box-shadow: inset 0px 5px 15px -10px var(--accent);
-}
-.userlist {
-  list-style-type: none;
-  padding: 10px;
-  text-align: left;
-  overflow: none;
-}
 
-.userlist li {
-  position: relative;
-  display: block;
-  color: #444;
-}
 @media screen and (max-width: 600px) {
   #day .grid-container {
     margin-bottom: 30px;
@@ -312,11 +277,9 @@ export default {
   .today .daytop {
     background-color: var(--main);
   }
-  .today .cardbot {
-    background-color: var(--highlight);
-  }
+
   .addentry p {
-    top: -5px;
+    top: -20px;
     font-size: 20px;
   }
 }

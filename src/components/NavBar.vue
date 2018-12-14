@@ -81,7 +81,7 @@ export default {
 .topnav a {
   float: left;
   display: block;
-  color: #ddd;
+  color: #fff;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -118,7 +118,7 @@ export default {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: var(--bottom);
+    background-color: var(--lightmain);
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px #999;
     font-weight: normal;
@@ -136,12 +136,12 @@ export default {
 
 .topnav a:hover, .dropdown:hover .dropbtn {
   background-color: var(--highlight);
-  color: var(--main);
+  color: #fff;
 }
 
 .dropdown-content a:hover {
-    background-color: #ddd;
-    color: black;
+    background-color: var(--highlight);
+    color: #fff;
 }
 
 .dropdown:hover .dropdown-content {

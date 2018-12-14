@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="container blu">
+  <div class="container calwrapper">
     <ClickOutside v-if="showMonthSelector" @closeEvent="closeEvent" />
     <h1>Hello jello!</h1>
     <div class="grid-container selector">
@@ -198,16 +198,19 @@ export default {
   cursor: pointer;
   top: +1px;
 }
-.blu {
+.calwrapper {
   padding-top: 25px;
-  background-image: linear-gradient(#fff, var(--lightmain) 15%);
+  background-color: #fff;
+}
+.calwrapper h1 {
+  color: var(--main);
 }
 .calendar {
   padding-top: 25px;
   padding-bottom: 5px;
   border-radius: 5px;
   border-top: 2px solid var(--main);
-  background-image: linear-gradient(var(--highlight), #fff 2%);
+  background-color: var(--lightmain);
 }
 @media screen and (max-width: 900px) {
   .blu h1 {

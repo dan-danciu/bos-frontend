@@ -54,19 +54,17 @@ export default {
     box-sizing: border-box;
   }
   html {
-    --main: #4facff;
-    --lightmain: #d1e9ff;
-    --secondary: #343e4f;
+    --main: #FA7268;
+    --lightmain: #fff;
+    --secondary: #f9c4c0;
     --accent: #bc2c00;
-    --bottom: #fff9f2;
-    --highlight: #afddda;
-    --disabled: #8d9fa8;
-    --middle: #2eccb1;
-    --shadow: #555;
+    --highlight: #ff483a;
+    --disabled: #a08888;
+    --shadow: #514342;
     height: 100%;
     min-width: 100%;
     overflow-x: hidden;
-    background-color: var(--lightmain);
+    background-color: var(--shadow);
   }
   .grid-container {
     display: grid;
