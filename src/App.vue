@@ -1,8 +1,9 @@
 <template>
   <div id="app" class="container">
 
-    <NavBar/><br>
+
     <div id="main" class="container">
+      <NavBar/><br>
       <br><br>
       <div class="card">
         <keep-alive>

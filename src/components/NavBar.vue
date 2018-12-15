@@ -65,7 +65,7 @@ export default {
 <style lang="css" scoped>
 .topnav {
   overflow: hidden;
-  background-image: linear-gradient(to right, var(--main) , var(--secondary));
+  background-color: var(--main);
   box-shadow: 0 4px 8px 0 var(--shadow);
   display: block;
   top: -10px;
@@ -74,14 +74,10 @@ export default {
   z-index: 200;
 }
 
-.topnav .brand {
-  color: #fff;
-}
-
 .topnav a {
   float: left;
   display: block;
-  color: #fff;
+  color: #000;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -108,7 +104,7 @@ export default {
     font-size: 17px;
     border: none;
     outline: none;
-    color: white;
+    color: #000;
     padding: 14px 16px;
     background-color: inherit;
     font-family: inherit;
@@ -118,7 +114,7 @@ export default {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: var(--lightmain);
+    background-color: var(--secondary);
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px #999;
     font-weight: normal;

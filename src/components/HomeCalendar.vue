@@ -167,11 +167,12 @@ export default {
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   height: 30px;
-  width: 150px;
+  width: auto;
+  min-width: 130px;
   color: #eee;
   margin-top: 5px;
   margin-bottom: 5px;
-  background-color: var(--main);
+  background-image: linear-gradient(var(--secondary), var(--highlight) 10%);
 }
 .month:hover {
   cursor: pointer;
@@ -200,11 +201,9 @@ export default {
 }
 .calwrapper {
   padding-top: 25px;
-  background-color: #fff;
+  background-color: var(--highlight);
 }
-.calwrapper h1 {
-  color: var(--main);
-}
+
 .calendar {
   padding-top: 25px;
   padding-bottom: 5px;
@@ -221,13 +220,15 @@ export default {
 }
 @media screen and (max-width: 600px) {
   .selector {
+    width: 92%;
+    left: 4%;
     position: fixed;
     grid-gap: 10px;
-    top: +65px;
+    top: +45px;
     z-index: 110;
     font-size: 20px;
     border-radius: 10px;
-    background-color: var(--lightmain);
+    background-color: var(--main);
   }
 }
 @media screen and (max-width: 350px) {

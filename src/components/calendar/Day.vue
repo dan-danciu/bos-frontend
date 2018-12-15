@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="day" :class="{outside: month != refMonth}">
-    <div class="grid-container" :class="{today: datesEqual}">
+    <div class="grid-container" :class="{today: datesEqual, weekend: isWeekend}">
       <div class="card caltop">
         <div class="ear1">'</div><div class="ear2">'</div>
         <div class="daytext" :class="{weekend: isWeekend}"><strong> {{ day }}</strong>
@@ -130,11 +130,17 @@ export default {
   top: -5px;
 }
 .today {
-  color: var(--lightmain);
-  box-shadow: 0px 0px 20px 7px var(--accent);
+  box-shadow: 0px 0px 20px 9px var(--highlight);
   font-weight: bolder;
   z-index: 5;
   background-image: linear-gradient(var(--accent), var(--main) 55%);
+}
+.today .weekend, .today .weekday, .today .weekend .weekday {
+  background-color: var(--highlight);
+  color: #fff;
+}
+.today .daytop {
+  background-color: var(--secondary);
 }
 .today .weekday {
   font-size: 20px;
@@ -162,7 +168,7 @@ export default {
   left: 10%;
 }
 .today .ear1, .today .ear2 {
-  background-color: var(--accent);
+  background-color: var(--highlight);
 }
 .ear2 {
   display: inline-block;
@@ -180,12 +186,12 @@ export default {
   left: 80%;
 }
 .caltop {
-  background-image: linear-gradient(var(--lightmain), var(--main) 10%);
+  background-image: linear-gradient(var(--main), var(--lightmain) 10%);
   border: 1px solid var(--main);
   height: 30px;
 }
-.today .caltop {
-  background-image: linear-gradient(var(--accent), var(--main));
+.weekend .caltop {
+  background-image: linear-gradient(var(--main), var(--highlight) 10%);
 }
 .outside .caltop, .outside .ear1, .outside .ear2 {
   background-image: linear-gradient(var(--lightmain), var(--shadow) 10%);
@@ -198,12 +204,13 @@ export default {
   background-color: #fff;
   width: 100%;
 }
+
 .daytext {
   font-size: 20px;
   position: relative;
   display: inline-block;
   top: -25px;
-  color: var(--lightmain);
+  color: #000;
   z-index: 1;
 }
 .weekday {
@@ -211,25 +218,25 @@ export default {
   bottom: 0px;
   font-size: 15px;
   text-decoration: overline;
-  color: var(--lightmain);
+  color: #000;
 }
 .weekend {
-  color: var(--accent);
+  color: #000;
 }
-.outside .weekend {
+.outside .daytext {
   color: var(--disabled);
 }
 .outside .weekend .weekday{
   color: var(--disabled);
 }
 .weekend .weekday {
-  color: var(--accent);
+  color: #000;
 }
 .addentry{
   display: flex;
   position: relative;
   background-color: var(--lightmain);
-  border: 1px dotted var(--highlight);
+  border: 1px solid var(--highlight);
   color: var(--main);
   font-size: 25px;
   border-radius: 5px;
@@ -263,8 +270,7 @@ export default {
     display: none;
   }
   .today {
-    color: var(--highlight);
-    box-shadow: 0px 0px 20px 2px var(--accent);
+    box-shadow: 0px 0px 20px 5px var(--highlight);
     z-index: 5;
   }
   .weekday {
@@ -272,10 +278,7 @@ export default {
   }
   .today .weekday {
     font-size: 20px;
-    color: var(--highlight);
-  }
-  .today .daytop {
-    background-color: var(--main);
+    color: #000;
   }
 
   .addentry p {
