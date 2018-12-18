@@ -133,10 +133,10 @@ export default {
   box-shadow: 0px 0px 20px 9px var(--highlight);
   font-weight: bolder;
   z-index: 5;
-  background-image: linear-gradient(var(--accent), var(--main) 55%);
-}
-.today .weekend, .today .weekday, .today .weekend .weekday {
   background-color: var(--highlight);
+}
+.today .weekend, .today .weekend .weekday {
+
   color: #fff;
 }
 .today .daytop {
