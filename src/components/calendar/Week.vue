@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="daycards" class="grid-container">
-    <day id="day" v-for="(day, index) in weekDays" :key="index" :date="day" :today="today" :refMonth="refMonth" :class="['day'+(index+1)]"/>
+    <Day id="day" v-for="(day, index) in weekDays" :key="index" :date="day" :today="today" :refMonth="refMonth" :class="['day'+(index+1)]"/>
   </div>
 </template>
 
